@@ -9,49 +9,57 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = MyWebApp
 build_property.RootNamespace = MyWebApp
-build_property.ProjectDir = /workspaces/Comp-3008/MyWebApp/
+build_property.ProjectDir = /workspaces/comp3008/
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /workspaces/Comp-3008/MyWebApp
+build_property.MSBuildProjectDirectory = /workspaces/comp3008
 build_property._RazorSourceGeneratorDebug = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Delivery.cshtml]
+[/workspaces/comp3008/Pages/Delivery.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVsaXZlcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Error.cshtml]
+[/workspaces/comp3008/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Index.cshtml]
+[/workspaces/comp3008/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Login.cshtml]
+[/workspaces/comp3008/Pages/Login.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Privacy.cshtml]
+[/workspaces/comp3008/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Shared/_ValidationScriptsPartial.cshtml]
+[/workspaces/comp3008/Pages/Shared/h&m.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL2gmbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/comp3008/Pages/Shared/northface.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL25vcnRoZmFjZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/comp3008/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/zara.cshtml]
+[/workspaces/comp3008/Pages/zara.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvemFyYS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/_ViewImports.cshtml]
+[/workspaces/comp3008/Pages/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/_ViewStart.cshtml]
+[/workspaces/comp3008/Pages/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/workspaces/Comp-3008/MyWebApp/Pages/Shared/_Layout.cshtml]
+[/workspaces/comp3008/Pages/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-tdy2x9681t

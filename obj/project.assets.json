@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/workspaces/Comp-3008/MyWebApp/MyWebApp.csproj",
+      "projectUniqueName": "/workspaces/comp3008/MyWebApp.csproj",
       "projectName": "MyWebApp",
-      "projectPath": "/workspaces/Comp-3008/MyWebApp/MyWebApp.csproj",
+      "projectPath": "/workspaces/comp3008/MyWebApp.csproj",
       "packagesPath": "/home/codespace/.nuget/packages/",
-      "outputPath": "/workspaces/Comp-3008/MyWebApp/obj/",
+      "outputPath": "/workspaces/comp3008/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/codespace/.nuget/NuGet/NuGet.Config"

@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function loadproducts(store){
+function loadproducts(store,product_div){
     let cat = store.catalog;
     let result = ""
     
@@ -81,10 +81,13 @@ function loadproducts(store){
     });
     // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
 
-    document.getElementById("zara_products").innerHTML = result;
+    document.getElementById(product_div).innerHTML = result;
 
 
 }
 
-loadproducts(shops[0])
+loadproducts(shops[0],"zara_products")
+loadproducts(shops[1],"northface_products")
+loadproducts(shops[2],"h&m_products")
+
 

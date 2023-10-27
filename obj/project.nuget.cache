@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "su8NDBOrjdmSQ9ZOzlBnaOoSmDPyKhZ6SehJMmM8PeTJtJAJxMleehZYIHJ6+xoJ+jYwqxNf++doZjXlrqmdnQ==",
+  "dgSpecHash": "jW8V5rdZxu422WsKNklK9+P/To3+m1nMawzb636juAy0Z01XzcA205QK2c9as9oEyYWu6DsYXBRHIE4/m8+Utw==",
   "success": true,
-  "projectFilePath": "/workspaces/Comp-3008/MyWebApp/MyWebApp.csproj",
+  "projectFilePath": "/workspaces/comp3008/MyWebApp.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
