@@ -1,0 +1,235 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.search-box input[type="text"] {
+    display: flex;
+    align-items: center;
+}
+
+/* Toggle Styles */
+.toggle-buttons {
+    display: flex;  /* Added this line to make sure the buttons are laid out as flex items */
+    justify-content: space-between;
+    border: 1px solid #000;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.toggle-buttons button {
+    flex: 1;  /* Makes the buttons grow to take available space */
+    cursor: pointer;
+    padding: 5px;
+    background-color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.toggle-buttons button.active {
+    background-color: #ddd;
+}
+
+.top input[type="text"] {
+    flex: 1; /* Allows the input to grow and take available space */
+    margin-right: 60px; /* Spacing between input and profile logo */
+    width: 80%;
+}
+
+.profile-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+.profile-logo img {
+    width: 100%;
+    height: 100%;
+}
+
+/* New container for .store-search and .toggle-buttons */
+.search-toggle-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.store-search {
+    flex: 1; /* This makes the store-search grow to take available space */
+    margin-left: 90px; /* Spacing between store-search and toggle-buttons */
+    margin-top: 15px;
+}
+/* 
+#filterButton {
+    position: relative;  
+    width: 30px;  
+    height: 30px;  
+    border: none;  
+    cursor: pointer;
+    background-color: transparent; 
+}
+
+#filterButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/filter.png');
+    background-size: cover;
+    opacity: 0.7;  
+} */
+
+#filterButton {
+    display: flex;        /* Use flexbox for layout */
+    align-items: center;  /* Align items vertically in the center */
+    padding: 5px 10px;    /* Add some padding around */
+    border: 1px solid #000;  /* Rectangle border */
+    cursor: pointer;
+    background-color: #FFF;  /* White background, adjust as needed */
+    margin-top: 30px;
+    border-radius: 5px;
+}
+
+#filterButton img {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;  /* Space between the image and the text */
+    opacity: 0.7;  /* Adjust the opacity of the image */
+}
+
+#filterButton span {
+    font-size: 16px;  /* Adjust font size as needed */
+}
+
+
+.toggle-buttons {
+    flex-basis: 60%; /* Adjust as needed */
+}
+
+.progress-container {
+    display: flex;
+    align-items: center;
+}
+
+.progress-bar {
+    width: 260px; /* Adjust the width of the progress bar */
+    height: 40px; /* Adjust the height of the progress bar */
+    background-color: #ddd;
+    border-radius: 10px;
+    position: relative;
+    margin-left: 20px; 
+    margin-top: 30px;
+}
+
+.progress {
+    width: 75%; /* Adjust the initial width of the progress bar */
+    height: 100%;
+    background-color: #4caf50; /* Adjust the progress bar color */
+    border-radius: 10px;
+    transition: width 1s ease-in-out; /* Animation for width change */
+}
+
+.progress-text {
+    font-size: 16px; /* Adjust font size as needed */
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.budget-input {
+    margin-top: 30px;
+    margin-left: 20px;
+}
+
+.main-content {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+.cart-section {
+    width: 85%;
+    border: 1px solid #000;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+.store-section {
+    width: 50%;
+    border: 1px solid #000;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    max-height: 500px; /* Adjust the max height as needed */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #aaa;
+    padding: 10px 0;
+}
+
+/* Add this CSS to your stylesheet */
+.store-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Create a grid with equal columns */
+    gap: 10px; /* Adjust the gap between grid items */
+    text-align: center; /* Center the content horizontally within each grid item */
+}
+
+.store {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center the content vertically within each store */
+    margin-top: 50px;
+}
+
+.store-logo {
+    width: 50px; /* Adjust the width to your desired size */
+    height: 40px; /* This maintains the aspect ratio */
+    margin-bottom: 5px; /* Adjust the margin between the logo and store name */
+}
+
+.store-name {
+    font-weight: bold; /* Make the store name bold */
+}
+
+
+
+
+@media (max-width: 768px) {
+    .top {
+        flex-direction: column;
+        align-items: start; /* Aligns content to the start (left) on smaller screens */
+    }
+
+    .top input[type="text"] {
+        width: 100%; /* Full width on smaller screens */
+        margin-bottom: 15px; /* Spacing between input and profile logo */
+        margin-right: 0; /* Remove the right margin */
+    }
+
+    .store-search input[type="text"] {
+        width: 100%;
+    }
+
+    .toggle-buttons button {
+        padding: 5px 5px;
+    }
+}
