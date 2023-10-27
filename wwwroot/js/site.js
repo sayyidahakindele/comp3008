@@ -66,14 +66,23 @@ document.addEventListener("DOMContentLoaded", function () {
 function loadproducts(store){
     let cat = store.catalog;
     let result = ""
-    console.log(cat)
+    
 
-    //for each product
-    // Object.keys(cat).forEach(id =>{
-    //     item = cat[id]
-    //     console.log(item)
-    // });
-    // '<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>'
+    // for each product
+    Object.keys(cat).forEach(id =>{
+        item = cat[id]
+        console.log(item)
+
+        //adds in the indevidual clothing items
+        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`
+        
+        // var x = document.getElementById("+");
+
+    });
+    // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
+
+    document.getElementById("zara_products").innerHTML = result;
+
 
 }
 
