@@ -1,0 +1,22 @@
+@page
+@model LoginModel
+@{ViewData["Title"] = "Login page";}
+
+<link rel="stylesheet" href="css/login.css" asp-append-version="true" />
+
+<main class="log">
+    <div class="login">
+        <form method="post">
+            <b>Username: </b>
+            <input asp-for="Username" size="20"> 
+
+            <b>Password: </b>
+            <input asp-for="Password" type="password" size="20"> 
+
+            <button class="logb" type="submit">Login</button>
+        </form>
+
+        <p class="Err">@ViewData["Error"]</p>
+        <p>Don't have an account? </p><a href="signup.html">Sign up</a>
+    </div>
+</main>
