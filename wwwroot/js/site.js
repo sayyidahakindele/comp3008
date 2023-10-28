@@ -90,66 +90,66 @@ document.addEventListener("DOMContentLoaded", function () {
 // loadproducts(shops[1],"northface_products")
 // loadproducts(shops[2],"h&m_products")
 
-function loadproducts(store,product_div){
-    console.log(store);
-    let st = shops[store]
-    let cat = st.catalog;
+// function loadproducts(store,product_div){
+//     console.log(store);
+//     let st = shops[store]
+//     let cat = st.catalog;
     
-    let result = ""
+//     let result = ""
     
 
-    // for each product
-    Object.keys(cat).forEach(id =>{
-        item = cat[id];
-        // console.log(item);
+//     // for each product
+//     Object.keys(cat).forEach(id =>{
+//         item = cat[id];
+//         // console.log(item);
 
-        //adds in the indevidual clothing items
-        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
-        console.log("j1");
-        result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
-        console.log("j2");
+//         //adds in the indevidual clothing items
+//         result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+//         console.log("j1");
+//         result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
+//         console.log("j2");
 
-    });
-    // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
+//     });
+//     // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
 
-    document.getElementById(product_div).innerHTML = result;
+//     document.getElementById(product_div).innerHTML = result;
 
 
-};
+// };
 
-loadproducts(0,"zara_products");
-loadproducts(1,"northface_products");
-loadproducts(2,"h&m_products");
+// loadproducts(0,"zara_products");
+// loadproducts(1,"northface_products");
+// loadproducts(2,"h&m_products");
 
-function addtocart(store_id,item_id){
+// function addtocart(store_id,item_id){
 
-    let incart = false;
-    console.log("j3");
+//     let incart = false;
+//     console.log("j3");
 
-   for (const key in users[user]["cart"]){
-        console.log("j4");
-        if (users[user]["cart"][key][1]==item_id){
-            console.log("j5");
-            incart=true;
+//    for (const key in users[user]["cart"]){
+//         console.log("j4");
+//         if (users[user]["cart"][key][1]==item_id){
+//             console.log("j5");
+//             incart=true;
 
-            users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
-            //updatestorecart()
+//             users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
+//             //updatestorecart()
 
-        };
-    };
+//         };
+//     };
 
-    if (incart==false){
-        // addtostorecart();
-        let keys = Object.keys(users[user]["cart"]);
-        let newkey = keys;
-        console.log("before add");
-        console.log(users[user]["cart"]);
-        users[user]["cart"][keys.length]=[store_id,item_id,1,false]
-        console.log("after add");
-        console.log(users[user]["cart"]);
-    }  
+//     if (incart==false){
+//         // addtostorecart();
+//         let keys = Object.keys(users[user]["cart"]);
+//         let newkey = keys;
+//         console.log("before add");
+//         console.log(users[user]["cart"]);
+//         users[user]["cart"][keys.length]=[store_id,item_id,1,false]
+//         console.log("after add");
+//         console.log(users[user]["cart"]);
+//     }  
 
-};
+// };
 
 
 // function toggleActive(buttonId) {
@@ -273,3 +273,89 @@ function filterStores() {
 // });
 
 
+function loadproducts(store,product_div){
+    // console.log(store);
+    let st = shops[store]
+    let cat = st.catalog;
+    
+    let result = ""
+    
+
+    // for each product
+    Object.keys(cat).forEach(id =>{
+        item = cat[id];
+        // console.log(item);
+
+        //adds in the indevidual clothing items
+        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+        result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
+
+    });
+    // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
+
+    document.getElementById(product_div).innerHTML = result;
+
+
+};
+
+loadproducts(0,"zara_products");
+loadproducts(1,"northface_products");
+loadproducts(2,"h&m_products");
+
+function addtocart(store_id,item_id){
+
+
+    let incart = false;
+
+   for (const key in users[user]["cart"]){
+        if (users[user]["cart"][key][1]==item_id){
+            incart=true;
+
+            users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
+            //updatestorecart()
+
+        };
+    };
+
+    if (incart==false){
+        // addtostorecart();
+        let keys = Object.keys(users[user]["cart"]);
+        let newkey = keys;
+        // console.log("before add");
+        // console.log(users[user]["cart"]);
+        users[user]["cart"][keys.length]=[store_id,item_id,1,false]
+        // console.log("after add");
+        // console.log(users[user]["cart"]);
+    }  
+
+    cartTotal();
+
+};
+
+function cartTotal(){//sums up the price of cloths stored in the cart
+    console.log("runs");
+    let ct = users[user]["cart"];//local cart variable
+    let total = 0;//the total 
+
+    // console.log(ct);
+
+    for (key in ct){//loops over the cart
+        // console.log(shops[ct[key][0]]["catalog"]);
+        total+=shops[ct[key][0]]["catalog"][ct[key][1]]["amount"]*ct[key][2];
+        // console.log("total: "+total);
+    }
+
+    return total;
+};
+
+
+// cartTotal()
+
+function displayTotal(total_div){
+    console.log("testing");
+    let t = cartTotal();
+    let result =`<p>Total: ${t}</p>`;
+    document.getElementById(total_div).innerHTML = result;
+}
+
+displayTotal("zara_total");
