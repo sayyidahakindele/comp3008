@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-
+user = 0
 
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
