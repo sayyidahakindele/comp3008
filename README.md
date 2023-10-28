@@ -2,5 +2,3 @@
 
 RUN CODE
 dotnet watch
-
-test
