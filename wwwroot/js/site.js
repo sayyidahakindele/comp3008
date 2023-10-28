@@ -91,3 +91,24 @@ loadproducts(shops[1],"northface_products")
 loadproducts(shops[2],"h&m_products")
 
 
+function toggleActive(buttonId) {
+    const buttons = document.querySelectorAll('.toggle-buttons button');
+    buttons.forEach(button => {
+        if (button.id === buttonId) {
+            button.classList.add('active');
+        } else {
+            button.classList.remove('active');
+        }
+    });
+
+    // Toggle content visibility based on the button pressed
+    const deliveryContent = document.getElementById('main-content');
+    const inStoreContent = document.getElementById('inStoreContent');
+    if (buttonId === 'deliveryButton') {
+        deliveryContent.style.display = 'flex';
+        inStoreContent.style.display = 'none';
+    } else if (buttonId === 'shoppingListButton') {
+        deliveryContent.style.display = 'none';
+        inStoreContent.style.display = 'block';
+    }
+}
