@@ -14,168 +14,190 @@
     <title>Shopping Page</title>
     <style>
         /* Basic styles */
-
     </style>
 </head>
 <body>
 
-    <div class="top">
+<div class="top">
     <input type="text" placeholder="Cart Search">
     <a href="/profile">
         <img class="profile-logo" src="profile-user.png" alt="Profile Logo">
     </a>
 </div>
 
-    <div class="search-toggle-container">
-        <div class="toggle-buttons">
-            <button id="deliveryButton" onclick="toggleActive('deliveryButton')">Delivery</button>
-            <button id="shoppingListButton" onclick="toggleActive('shoppingListButton')">In Store</button>
-        </div>
-
-        <div class="store-search">
-            <input type="text" placeholder="Store Search">
-        </div>
+<div class="search-toggle-container">
+    <div class="toggle-buttons">
+        <button id="deliveryButton" onclick="toggleActive('deliveryButton')">Delivery</button>
+        <button id="shoppingListButton" onclick="toggleActive('shoppingListButton')">In Store</button>
     </div>
+    <div class="store-search">
+        <input type="text" placeholder="Store Search">
+    </div>
+</div>
 
-    <!-- <button id="filterButton" placeholder="Filter"></button> -->
-    <div class="progress-container">
+<div class="progress-container">
     <button id="filterButton"><img src="/filter.png" alt="Filter Icon">
         <span>Filter and Sort</span>
     </button>
-
-    <!-- <div class="progress-bar">
-        <div class="progress"></div>
-    </div>
-    <input type="text" class="progress-text" value="75% spent">
-    </div> -->
-
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
-    
-
     <div class="budget-input">
         <label for="budget">Budget:</label>
         <input type="number" id="budget" placeholder="Enter your budget">
         <button id="updateButton">Update</button>
     </div>
+</div>
+
+<!-- Main Content Area -->
+<div class="main-content">
+
+    <!-- Cart Section -->
+    <div class="cart-section" id="cart-section">
+        <div class="product">
+            <img src="path/to/image" alt="Black Shirt" width="50">
+            <div>
+                <p>Black Shirt</p>
+                <p>Store: H & M</p>
+                <p>Size: Large</p>
+                <p>Price: $20</p>
+            </div>
+            <p>★★★★☆</p>
+        </div>
+        <div class="product">
+            <img src="path/to/image" alt="White Pants" width="50">
+            <div>
+                <p>White Pants</p>
+                <p>Store: Zara</p>
+                <p>Size: Large</p>
+                <p>Price: $70</p>
+            </div>
+            <p>★★★★☆</p>
+        </div>
+        <div class="checkout">
+            <button>Checkout</button>
+            <p>Total: $90</p>
+        </div>
     </div>
 
-    <div class="main-content" id="main-content">
-        <div class="cart-section">
-            <div class="product">
-                <img src="path/to/image" alt="Black Shirt" width="50">
-                <div>
-                    <p>Black Shirt</p>
-                    <p>Store: H & M</p>
-                    <p>Size: Large</p>
-                    <p>Price: $20</p>
-                </div>
-                <p>★★★★☆</p>
-            </div>
-            <div class="product">
-                <img src="path/to/image" alt="White Pants" width="50">
-                <div>
-                    <p>White Pants</p>
-                    <p>Store: Zara</p>
-                    <p>Size: Large</p>
-                    <p>Price: $70</p>
-                </div>
-                <p>★★★★☆</p>
-            </div>
-            <div class="checkout">
-                <button>Checkout</button>
-                <p>Total: $90</p>
+    <!-- Shopping List Section -->
+    <div id="inStoreContent" class="shopping-list" style="display: none;">
+        <h2>Shopping List</h2>
+        <div class="store-item">
+            <div>Zara</div>
+            <div>
+                <p>Black Shirt - $30</p>
+                <p>White Shirt - $30</p>
             </div>
         </div>
-        <div class="store-section">
-            <div class="store">
+        <div class="store-item">
+            <div>H & M</div>
+            <div>
+                <p>Black Shirt - $30</p>
+                <p>White Shirt - $30</p>
+            </div>
+        </div>
+        <div class="total">Total: $50</div>
+    </div>
+
+    <!-- Store Section (which remains unchanged) -->
+    <div class="store-section">
+        <div class="store">
             <a href="/zara" target="_blank">
                 <div class="store-logo-container">
                     <img src="/Zara_logo.png" alt="Zara Logo" class="store-logo">
                 </div>
-                </a>
-                <div class="store-name">Zara</div>
+            </a>
+            <div class="store-name">Zara</div>
+        </div>
+        <div class="store">
+            <a href="/h&m" target="_blank">
+            <div class="store-logo-container">
+                <img src="/HM_logo.png" alt="H&M Logo" class="store-logo">
             </div>
-
-    <div class="store">
-        <a href="/h&m" target="_blank">
-        <div class="store-logo-container">
-            <img src="/HM_logo.png" alt="H&M Logo" class="store-logo">
+            </a>
+            <div class="store-name">H & M</div>
         </div>
-        </a>
-        <div class="store-name">H & M</div>
-    </div>
 
-    <div class="store">
-        <a href="/northface" target="_blank">
-        <div class="store-logo-container">
-            <img src="/Northface_logo.png" alt="Northface Logo" class="store-logo">
+        <div class="store">
+            <a href="/northface" target="_blank">
+            <div class="store-logo-container">
+                <img src="/Northface_logo.png" alt="Northface Logo" class="store-logo">
+            </div>
+            </a>
+            <div class="store-name">The North Face</div>
         </div>
-        </a>
-        <div class="store-name">The North Face</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/LV_Logo.png" alt="LV Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/LV_Logo.png" alt="LV Logo" class="store-logo">
+            </div>
+            <div class="store-name">Louis Vuitton</div>
         </div>
-        <div class="store-name">Louis Vuitton</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/AE_logo.png" alt="AE Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/AE_logo.png" alt="AE Logo" class="store-logo">
+            </div>
+            <div class="store-name">American Eagle</div>
         </div>
-        <div class="store-name">American Eagle</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/ftg_logo.png" alt="FTG Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/ftg_logo.png" alt="FTG Logo" class="store-logo">
+            </div>
+            <div class="store-name">For The Geng</div>
         </div>
-        <div class="store-name">For The Geng</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/TH_logo.png" alt="TH Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/TH_logo.png" alt="TH Logo" class="store-logo">
+            </div>
+            <div class="store-name">Tommy Hilfiger</div>
         </div>
-        <div class="store-name">Tommy Hilfiger</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/Prada_logo.png" alt="Prada Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/Prada_logo.png" alt="Prada Logo" class="store-logo">
+            </div>
+            <div class="store-name">Prada</div>
         </div>
-        <div class="store-name">Prada</div>
-    </div>
 
-    <div class="store">
-        <div class="store-logo-container">
-            <img src="/Canada_Goose_logo.png" alt="Canada Goose Logo" class="store-logo">
+        <div class="store">
+            <div class="store-logo-container">
+                <img src="/Canada_Goose_logo.png" alt="Canada Goose Logo" class="store-logo">
+            </div>
+            <div class="store-name">Canada Goose</div>
         </div>
-        <div class="store-name">Canada Goose</div>
     </div>
 
 </div>
 
-<div id="inStoreContent" class="content-section" style="display: none;">
-    <!-- Content for In Store goes here -->
-    <p>In Store Content Here.</p>
-</div>
+<!-- JavaScript to toggle between cart-section and shopping-list -->
+<script>
+    function toggleActive(buttonId) {
+        const inStoreContent = document.getElementById('inStoreContent');
+        const cartSection = document.getElementById('cart-section');
 
-    <!-- <script>
-        function toggleActive(buttonId) {
-            const buttons = document.querySelectorAll('.toggle-buttons button');
-            buttons.forEach(button => {
-                if (button.id === buttonId) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
-            });
+        if (buttonId === 'shoppingListButton') {
+            inStoreContent.style.display = 'block';
+            cartSection.style.display = 'none';
+        } else {
+            inStoreContent.style.display = 'none';
+            cartSection.style.display = 'block';
         }
-    </script> -->
+
+        const buttons = document.querySelectorAll('.toggle-buttons button');
+        buttons.forEach(button => {
+            if (button.id === buttonId) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+    }
+</script>
+
 </body>
 </html>
+
