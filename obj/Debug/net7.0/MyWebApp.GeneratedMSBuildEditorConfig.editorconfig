@@ -24,6 +24,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/comp3008/Pages/h&m.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvaCZtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/comp3008/Pages/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -32,16 +36,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/comp3008/Pages/northface.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvbm9ydGhmYWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/comp3008/Pages/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUHJpdmFjeS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/workspaces/comp3008/Pages/Shared/h&m.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL2gmbS5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/workspaces/comp3008/Pages/Shared/northface.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL25vcnRoZmFjZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspaces/comp3008/Pages/Shared/_ValidationScriptsPartial.cshtml]
