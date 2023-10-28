@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-user = 0
+let user = 0
 
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
@@ -289,6 +289,8 @@ function loadproducts(store,product_div){
         //adds in the indevidual clothing items
         result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
         result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
+        // result += `<div><button type="button" id="myBtn" class="add-to-cart"">+</button></div>`;
+        
 
     });
     // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
@@ -336,6 +338,7 @@ function cartTotal(){//sums up the price of cloths stored in the cart
     console.log("runs");
     let ct = users[user]["cart"];//local cart variable
     let total = 0;//the total 
+    // console.log(ct);
 
     // console.log(ct);
 
@@ -344,18 +347,33 @@ function cartTotal(){//sums up the price of cloths stored in the cart
         total+=shops[ct[key][0]]["catalog"][ct[key][1]]["amount"]*ct[key][2];
         // console.log("total: "+total);
     }
-
+    // console.log(total);
     return total;
 };
 
-
+console.log(cartTotal());
 // cartTotal()
 
 function displayTotal(total_div){
     console.log("testing");
     let t = cartTotal();
-    let result =`<p>Total: ${t}</p>`;
+    let result ="";
+    result += `<p>Total: ${t}</p>`;
     document.getElementById(total_div).innerHTML = result;
 }
 
 displayTotal("zara_total");
+
+
+function loadCartItems(cart_div) {
+    // const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    document.getElementById(cart_div).innerHTML = "";
+    let result = ""
+
+    users[user]["cart"].forEach(product => {
+        let item = shops[product[0]]["catalog"][product[1]];
+        // result += ` <div> <p>${}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+        
+    });
+};
+
