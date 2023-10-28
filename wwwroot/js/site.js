@@ -153,31 +153,34 @@ function toggleActive(buttonId) {
 // }
 
 function filterStores() {
-    // Get the input value and convert to lowercase for case-insensitive search
-    const query = document.getElementById('storeSearchInput').value.toLowerCase();
+    // 1. Get the search term
+    const searchTerm = document.getElementById('storeSearchInput').value.toLowerCase();
 
-    // Initialize a flag to check if a store matches the query
-    let storeFound = false;
+    // 2. Loop through the list of stores
+    const stores = document.querySelectorAll('.store-name');
+    let storeFound = false; // Flag to check if any store matches the search term
 
-    // Loop through each store in the shops data and filter based on the search query
-    for (const shopId in shops) {
-        const storeName = shops[shopId].name.toLowerCase();
-        const storeElement = document.getElementById(`store-${shopId}`); // Each store div should have an id like 'store-0', 'store-1', etc.
+    stores.forEach(storeElement => {
+        const storeName = storeElement.textContent.toLowerCase();
 
-        if (storeName.includes(query)) {
-            storeElement.style.display = 'block'; // Show the store if it matches the query
+        if (storeName.includes(searchTerm)) {
+            storeElement.parentElement.style.display = 'block'; // Show the store if it matches
             storeFound = true;
         } else {
-            storeElement.style.display = 'none'; // Hide the store if it doesn't match the query
+            storeElement.parentElement.style.display = 'none'; // Hide the store if it doesn't match
         }
-    }
+    });
 
-    // Display a message if no stores match the search query
-    const noResultsElement = document.getElementById('noResultsMessage');
-    if (!storeFound) {
-        noResultsElement.style.display = 'block';
+    // 3. Display a message if no stores match
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    if (storeFound) {
+        noResultsMessage.style.display = 'none';
     } else {
-        noResultsElement.style.display = 'none';
+        noResultsMessage.style.display = 'block';
     }
 }
+
+// Add event listener to the "Search" button
+document.getElementById('searchButton').addEventListener('click', filterStores);
+
 
