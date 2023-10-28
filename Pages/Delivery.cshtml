@@ -31,8 +31,9 @@
         <button id="shoppingListButton" onclick="toggleActive('shoppingListButton')">In Store</button>
     </div>
     <div class="store-search">
-        <input type="text" placeholder="Store Search">
+        <input type="text" id="storeSearchInput" placeholder="Store Search" oninput="filterStores()">
     </div>
+
 </div>
 
 <div class="progress-container">
@@ -102,7 +103,7 @@
 
     <!-- Store Section (which remains unchanged) -->
     <div class="store-section">
-        <div class="store">
+        <div class="store" id="store-0">
             <a href="/zara" target="_blank">
                 <div class="store-logo-container">
                     <img src="/Zara_logo.png" alt="Zara Logo" class="store-logo">
@@ -110,7 +111,7 @@
             </a>
             <div class="store-name">Zara</div>
         </div>
-        <div class="store">
+        <div class="store" id="store-1">
             <a href="/h&m" target="_blank">
             <div class="store-logo-container">
                 <img src="/HM_logo.png" alt="H&M Logo" class="store-logo">
@@ -119,7 +120,7 @@
             <div class="store-name">H & M</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-2">
             <a href="/northface" target="_blank">
             <div class="store-logo-container">
                 <img src="/Northface_logo.png" alt="Northface Logo" class="store-logo">
@@ -128,42 +129,42 @@
             <div class="store-name">The North Face</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-3">
             <div class="store-logo-container">
                 <img src="/LV_Logo.png" alt="LV Logo" class="store-logo">
             </div>
             <div class="store-name">Louis Vuitton</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-4">
             <div class="store-logo-container">
                 <img src="/AE_logo.png" alt="AE Logo" class="store-logo">
             </div>
             <div class="store-name">American Eagle</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-5">
             <div class="store-logo-container">
                 <img src="/ftg_logo.png" alt="FTG Logo" class="store-logo">
             </div>
             <div class="store-name">For The Geng</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-6">
             <div class="store-logo-container">
                 <img src="/TH_logo.png" alt="TH Logo" class="store-logo">
             </div>
             <div class="store-name">Tommy Hilfiger</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-7">
             <div class="store-logo-container">
                 <img src="/Prada_logo.png" alt="Prada Logo" class="store-logo">
             </div>
             <div class="store-name">Prada</div>
         </div>
 
-        <div class="store">
+        <div class="store" id="store-8">
             <div class="store-logo-container">
                 <img src="/Canada_Goose_logo.png" alt="Canada Goose Logo" class="store-logo">
             </div>
@@ -172,6 +173,11 @@
     </div>
 
 </div>
+
+<div id="noResultsMessage" style="display: none;">
+    No stores found for your search.
+</div>
+
 
 <!-- JavaScript to toggle between cart-section and shopping-list -->
 <!-- <script>

@@ -134,3 +134,50 @@ function toggleActive(buttonId) {
         }
     });
 }
+
+// function filterStores() {
+//     // Get the input value and convert to lowercase for case-insensitive search
+//     const query = document.getElementById('storeSearchInput').value.toLowerCase();
+
+//     // Loop through each store in the shops data and filter based on the search query
+//     for (const shopId in shops) {
+//         const storeName = shops[shopId].name.toLowerCase();
+//         const storeElement = document.getElementById(`store-${shopId}`); 
+
+//         if (storeName.includes(query)) {
+//             storeElement.style.display = 'block'; // Show the store if it matches the query
+//         } else {
+//             storeElement.style.display = 'none'; // Hide the store if it doesn't match the query
+//         }
+//     }
+// }
+
+function filterStores() {
+    // Get the input value and convert to lowercase for case-insensitive search
+    const query = document.getElementById('storeSearchInput').value.toLowerCase();
+
+    // Initialize a flag to check if a store matches the query
+    let storeFound = false;
+
+    // Loop through each store in the shops data and filter based on the search query
+    for (const shopId in shops) {
+        const storeName = shops[shopId].name.toLowerCase();
+        const storeElement = document.getElementById(`store-${shopId}`); // Each store div should have an id like 'store-0', 'store-1', etc.
+
+        if (storeName.includes(query)) {
+            storeElement.style.display = 'block'; // Show the store if it matches the query
+            storeFound = true;
+        } else {
+            storeElement.style.display = 'none'; // Hide the store if it doesn't match the query
+        }
+    }
+
+    // Display a message if no stores match the search query
+    const noResultsElement = document.getElementById('noResultsMessage');
+    if (!storeFound) {
+        noResultsElement.style.display = 'block';
+    } else {
+        noResultsElement.style.display = 'none';
+    }
+}
+
