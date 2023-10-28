@@ -244,4 +244,32 @@ function filterStores() {
 // Add event listener to the "Search" button
 // document.getElementById('searchButton').addEventListener('click', filterStores);
 
+// document.addEventListener("DOMContentLoaded", function() {
+//     const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     const cartSection = document.getElementById('cart-section');
+
+//     // Clear cart section first
+//     while (cartSection.firstChild) {
+//         cartSection.removeChild(cartSection.firstChild);
+//     }
+
+//     // Populate the cart section with items from localStorage
+//     cart.forEach(productId => {
+//         // Here, you would fetch product details by productId (e.g., from an API or a data array)
+//         // and then create and append product elements to cartSection
+//         // For this example, let's just append a simple text node for each product
+
+//         const productElement = document.createElement('div');
+//         productElement.className = 'product';
+//         productElement.textContent = "Product ID: " + productId;
+//         cartSection.appendChild(productElement);
+//     });
+
+//     // Append the checkout section
+//     const checkoutDiv = document.createElement('div');
+//     checkoutDiv.className = 'checkout';
+//     checkoutDiv.innerHTML = '<button>Checkout</button><p>Total: $' + (cart.length * 20) + '</p>'; // Assuming each product costs $20 for simplicity
+//     cartSection.appendChild(checkoutDiv);
+// });
+
 
