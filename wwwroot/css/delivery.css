@@ -69,9 +69,16 @@ body {
 
 .store-search {
     flex: 1; /* This makes the store-search grow to take available space */
-    margin-left: 90px; /* Spacing between store-search and toggle-buttons */
+    margin-left: 50px; /* Spacing between store-search and toggle-buttons */
     margin-top: 15px;
 }
+
+#noResultsMessage {
+    white-space: nowrap;   
+    margin-left: 100px;
+    margin-top: 150px;
+}
+
 /* 
 #filterButton {
     position: relative;  

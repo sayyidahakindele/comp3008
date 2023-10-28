@@ -176,11 +176,11 @@ function filterStores() {
     if (storeFound) {
         noResultsMessage.style.display = 'none';
     } else {
-        noResultsMessage.style.display = 'block';
+        noResultsMessage.style.display = 'flex';
     }
 }
 
 // Add event listener to the "Search" button
-document.getElementById('searchButton').addEventListener('click', filterStores);
+// document.getElementById('searchButton').addEventListener('click', filterStores);
 
 

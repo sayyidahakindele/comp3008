@@ -51,8 +51,8 @@
     </div>
 
     <div class="store-search">
-        <input type="text" id="storeSearchInput" placeholder="Store Search" oninput="filterStores()">
-        <button id="searchButton">Search</button>
+        <input type="text" id="storeSearchInput" placeholder="Store Search" oninput="filterStores()" size="60">
+        <!-- <button id="searchButton">Search</button> -->
     </div>
 </div>
 
@@ -176,13 +176,13 @@
             </div>
             <div class="store-name">Canada Goose</div>
         </div>
+            <div id="noResultsMessage" style="display: none;">
+                No stores found for your search.
+            </div>
     </div>
 
 </div>
 
-<div id="noResultsMessage" style="display: none;">
-    No stores found for your search.
-</div>
 
 
 <!-- JavaScript to toggle between cart-section and shopping-list -->
