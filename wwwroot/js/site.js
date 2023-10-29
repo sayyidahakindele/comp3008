@@ -273,36 +273,73 @@ function filterStores() {
 // });
 
 
-function loadproducts(store,product_div){
-    // console.log(store);
-    let st = shops[store]
-    let cat = st.catalog;
+// function loadproducts(store,product_div){
+//     // console.log(store);
+//     let st = shops[store]
+//     let cat = st.catalog;
     
-    let result = ""
+//     let result = ""
     
 
-    // for each product
-    Object.keys(cat).forEach(id =>{
-        item = cat[id];
-        // console.log(item);
+//     // for each product
+//     Object.keys(cat).forEach(id =>{
+//         item = cat[id];
+//         // console.log(item);
 
-        //adds in the indevidual clothing items
-        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
-        result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
-        // result += `<div><button type="button" id="myBtn" class="add-to-cart"">+</button></div>`;
+//         //adds in the indevidual clothing items
+//         result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${st.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+//         result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
+//         // result += `<div><button type="button" id="myBtn" class="add-to-cart"">+</button></div>`;
         
 
+//     });
+//     // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
+//     console.log(document.getElementById(product_div));
+//     document.getElementById(product_div).innerHTML = result;
+//     console.log(shops);
+//     console.log("Loading products for:", product_div);
+
+
+// };
+
+// loadproducts(0,"zara_products");
+// loadproducts(1,"northface_products");
+// loadproducts(2,"hm_products");
+
+function loadproducts(store, product_div) {
+    // Check if the div exists in the DOM
+    let targetDiv = document.getElementById(product_div);
+    if (!targetDiv) {
+        console.error(`Div with ID ${product_div} not found.`);
+        return; // Exit the function early if div doesn't exist
+    }
+
+    // Rest of your function...
+    let st = shops[store];
+    let cat = st.catalog;
+    let result = "";
+
+    // for each product
+    Object.keys(cat).forEach(id => {
+        let item = cat[id];
+        //adds in the individual clothing items
+        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${st.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+        result += `<div><button type="button" id="myBtn" onclick="${addtocart(store,id)}">+</button></div>`;
     });
-    // `<img src="path/to/image" alt="Black Shirt" width="50"></img>' '<div> <p>Black Shirt</p> <p>Store: H &amp; M</p> <p>Size: Large</p> <p>Price: $20</p> </div>`
 
-    document.getElementById(product_div).innerHTML = result;
+    // Set the innerHTML of the target div
+    targetDiv.innerHTML = result;
 
+    // Your logging statements
+    console.log(shops);
+    console.log("Loading products for:", product_div);
+}
 
-};
-
-loadproducts(0,"zara_products");
-loadproducts(1,"northface_products");
-loadproducts(2,"h&m_products");
+document.addEventListener("DOMContentLoaded", function() {
+    loadproducts(0,"zara_products");
+    loadproducts(1,"northface_products");
+    loadproducts(2,"hm_products");
+});
 
 function addtocart(store_id,item_id){
 
