@@ -1,4 +1,4 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
@@ -219,7 +219,7 @@ function displayTotal(total_div){
 displayTotal("zara_total");
 
 
-function loadCartItems(cart_div) {
+function LoadCartItems(cart_div) {
     // const cart = JSON.parse(localStorage.getItem('cart')) || [];
     document.getElementById(cart_div).innerHTML = "";
     let result = ""
@@ -238,7 +238,7 @@ function loadCartItems(cart_div) {
     document.getElementById(cart_div).innerHTML = result;
 };
 
-loadCartItems("zara_cart");
+LoadCartItems("zara_cart");
 
 function loadzara(){
     displayTotal("zara_total");
