@@ -341,16 +341,95 @@ document.addEventListener("DOMContentLoaded", function() {
     loadproducts(2,"hm_products");
 });
 
+
+//////dami edited here
+// function addtocart(store_id,item_id){
+
+
+//     let incart = false;
+
+//    for (const key in users[user]["cart"]){
+//         if (users[user]["cart"][key][1]==item_id){
+//             incart=true;
+
+//             users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
+//             //updatestorecart()
+
+//         };
+//     };
+
+//     if (incart==false){
+//         // addtostorecart();
+//         let keys = Object.keys(users[user]["cart"]);
+//         let newkey = keys;
+//         // console.log("before add");
+//         // console.log(users[user]["cart"]);
+//         users[user]["cart"][keys.length]=[store_id,item_id,1,false]
+//         // console.log("after add");
+//         // console.log(users[user]["cart"]);
+//     }  
+
+//     cartTotal();
+
+// };
+
+// function cartTotal(){//sums up the price of cloths stored in the cart
+//     console.log("runs");
+//     let ct = users[user]["cart"];//local cart variable
+//     let total = 0;//the total 
+//     // console.log(ct);
+
+//     // console.log(ct);
+
+//     for (key in ct){//loops over the cart
+//         // console.log(shops[ct[key][0]]["catalog"]);
+//         total+=shops[ct[key][0]]["catalog"][ct[key][1]]["amount"]*ct[key][2];
+//         // console.log("total: "+total);
+//     }
+//     // console.log(total);
+//     return total;
+// };
+
+// console.log(cartTotal());
+// // cartTotal()
+
+// function displayTotal(total_div){
+//     console.log("testing");
+//     let t = cartTotal();
+//     let result ="";
+//     result += `<p>Total: ${t}</p>`;
+//     document.getElementById(total_div).innerHTML = result;
+// }
+
+// displayTotal("zara_total");
+
+
+// function loadCartItems(cart_div) {
+//     // const cart = JSON.parse(localStorage.getItem('cart')) || [];
+//     document.getElementById(cart_div).innerHTML = "";
+//     let result = ""
+
+//     users[user]["cart"].forEach(product => {
+//         let item = shops[product[0]]["catalog"][product[1]];
+//         // result += ` <div> <p>${}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+        
+//     });
+// };
+
 function addtocart(store_id,item_id){
 
-
+    console.log("see me");
     let incart = false;
 
    for (const key in users[user]["cart"]){
         if (users[user]["cart"][key][1]==item_id){
             incart=true;
 
+            // console.log("before add");
+            // console.log(users[user]["cart"]);
             users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
+            // console.log("after add");
+            // console.log(users[user]["cart"]);
             //updatestorecart()
 
         };
@@ -365,6 +444,7 @@ function addtocart(store_id,item_id){
         users[user]["cart"][keys.length]=[store_id,item_id,1,false]
         // console.log("after add");
         // console.log(users[user]["cart"]);
+        // console.log(keys.length);
     }  
 
     cartTotal();
@@ -381,14 +461,17 @@ function cartTotal(){//sums up the price of cloths stored in the cart
 
     for (key in ct){//loops over the cart
         // console.log(shops[ct[key][0]]["catalog"]);
-        total+=shops[ct[key][0]]["catalog"][ct[key][1]]["amount"]*ct[key][2];
+        total+=shops[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
         // console.log("total: "+total);
-    }
+    } 
     // console.log(total);
     return total;
 };
 
-console.log(cartTotal());
+
+console.log("before cart total");
+let to = cartTotal();
+console.log(to);
 // cartTotal()
 
 function displayTotal(total_div){
@@ -406,11 +489,51 @@ function loadCartItems(cart_div) {
     // const cart = JSON.parse(localStorage.getItem('cart')) || [];
     document.getElementById(cart_div).innerHTML = "";
     let result = ""
+    result += "<h2>cart</h2>";
+    console.log(users[user]["cart"]);
 
-    users[user]["cart"].forEach(product => {
-        let item = shops[product[0]]["catalog"][product[1]];
-        // result += ` <div> <p>${}</p> <p>Store: ${store.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+    for (product in users[user]["cart"]){
+        console.log("fire");
+        let st = users[user]["cart"][product][0];
+        let i = users[user]["cart"][product][1];
+        let item = shops[st]["catalog"][i];
+        result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p> </div>`;
         
-    });
+    };
+
+    document.getElementById(cart_div).innerHTML = result;
 };
+
+loadCartItems("zara_cart");
+
+function loadzara(){
+    displayTotal("zara_total");
+    loadproducts(0,"zara_products");
+    loadCartItems("zara_cart");
+
+
+}
+
+function spec_cart(s,cart_div){
+    ocument.getElementById(cart_div).innerHTML = "";
+    let result = ""
+    result += "<h2>cart</h2>";
+    console.log(users[user]["cart"]);
+
+    for (product in users[user]["cart"]){
+        console.log("fire");
+        let st = users[user]["cart"][product][0];
+        if (st==s){
+            let i = users[user]["cart"][product][1];
+            let item = shops[st]["catalog"][i];
+            result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p> </div>`;
+        }
+    };
+
+    document.getElementById(cart_div).innerHTML = result;
+}
+
+displayTotal("cart_total");
+loadCartItems("total_cart")
+
 
