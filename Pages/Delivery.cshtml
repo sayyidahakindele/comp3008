@@ -61,7 +61,9 @@
 
     <!-- Cart Section -->
     <div class="cart-section" id="cart-section">
-        <div class="product">
+        <h2>Cart</h2>
+        <div id="cart_div"></div>
+        <!-- <div class="product">
             <img src="path/to/image" alt="Black Shirt" width="50">
             <div>
                 <p>Black Shirt</p>
@@ -80,7 +82,7 @@
                 <p>Price: $70</p>
             </div>
             <p>★★★★☆</p>
-        </div>
+        </div> -->
         <div class="checkout">
             <button>Checkout</button>
             <p>Total: $90</p>
@@ -90,6 +92,8 @@
     <!-- Shopping List Section -->
     <div id="inStoreContent" class="shopping-list" style="display: none;">
         <h2>Shopping List</h2>
+        <div id="instore"></div>
+        <!-- <h2>Shopping List</h2>
         <div class="store-item">
             <div>Zara</div>
             <div>
@@ -104,7 +108,7 @@
                 <p>White Shirt - $30</p>
             </div>
         </div>
-        <div class="total">Total: $50</div>
+        <div class="total">Total: $50</div> -->
     </div>
 
     <!-- Store Section (which remains unchanged) -->
@@ -234,7 +238,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //     cartSection.appendChild(productElement);
     // });
 
-    loadCartItems("cart-section");
+    loadcartItems("cart_div");
 
     // Append the checkout section
     const checkoutDiv = document.createElement('div');

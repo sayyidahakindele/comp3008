@@ -3,7 +3,7 @@
 
 // Write your JavaScript code.
 
-user = 0
+let user = 0
 
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
@@ -219,7 +219,7 @@ function displayTotal(total_div){
 displayTotal("zara_total");
 
 
-function LoadCartItems(cart_div) {
+function LoadcartItems(cart_div) {
     // const cart = JSON.parse(localStorage.getItem('cart')) || [];
     document.getElementById(cart_div).innerHTML = "";
     let result = ""
@@ -231,14 +231,15 @@ function LoadCartItems(cart_div) {
         let st = users[user]["cart"][product][0];
         let i = users[user]["cart"][product][1];
         let item = shops[st]["catalog"][i];
-        result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p> </div>`;
+        result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
+        result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}])><label>in store</label><br></br>`;
         
     };
 
     document.getElementById(cart_div).innerHTML = result;
 };
 
-LoadCartItems("zara_cart");
+LoadcartItems("zara_cart");
 
 function loadzara(){
     displayTotal("zara_total");
@@ -251,7 +252,7 @@ function loadzara(){
 function spec_cart(s,cart_div){
     ocument.getElementById(cart_div).innerHTML = "";
     let result = ""
-    result += "<h2>cart</h2>";
+    // result += "<h2>cart</h2>";
     console.log(users[user]["cart"]);
 
     for (product in users[user]["cart"]){
