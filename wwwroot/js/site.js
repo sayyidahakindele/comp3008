@@ -268,4 +268,36 @@ function spec_cart(s,cart_div){
 }
 
 displayTotal("cart_total");
-loadCartItems("total_cart")
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadCartItems("cart_div");
+});
+
+//input is a list [store_id,item_id],amount
+function instoreCheck(li) {
+    
+    for (item in users[user]["cart"]){
+        if (item==li[1]){
+            if (users[user]["cart"][item]==true){
+                users[user]["cart"][item]=false;
+            }
+            else{
+                users[user]["cart"][item]=true;
+            }
+        }
+    }
+
+    console.log(users[user]["cart"][item]);
+    
+}
+
+// function load_instore(in_div){
+//     document.getElementById(in_div).innerHTML = "";
+//     let result = "";
+
+//     for (product in userws[user]["cart"]){
+//         if (){}
+//     }
+    
+
+// }
