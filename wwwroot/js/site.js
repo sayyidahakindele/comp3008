@@ -385,7 +385,7 @@ function loadCartItems(cart_div) {
         let i = users[user]["cart"][product][1];
         let item = shops[st]["catalog"][i];
         result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
-        result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}])><label>in store</label><br></br>`;
+        result += `<input id = "${st},${i},check" type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},check")><label>in store</label><br></br>`;
     };
 
     document.getElementById(cart_div).innerHTML = result;
@@ -427,30 +427,49 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 //input is a list [store_id,item_id],amount
-function instoreCheck(li) {
+function instoreCheck(li,check_id) {
     
     for (item in users[user]["cart"]){
-        if (item==li[1]){
-            if (users[user]["cart"][item]==true){
-                users[user]["cart"][item]=false;
+        if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
+            if (document.getElementById(check_id).checked){
+                users[user]["cart"][item][3]=true;
             }
-            else{
-                users[user]["cart"][item]=true;
+            else {
+                users[user]["cart"][item][3]=false;
             }
+            
+            
+            // else if (users[user]["cart"][item][3]==true ){
+            //     users[user]["cart"][item][3]=false;
+            // }
+            // else{
+            //     users[user]["cart"][item][3]=true;
+            // }
         }
     }
-
+    // console.log(users[user]["cart"]);
     console.log(users[user]["cart"][item]);
     
 }
 
-// function load_instore(in_div){
-//     document.getElementById(in_div).innerHTML = "";
-//     let result = "";
+function load_instore(in_div){
+    document.getElementById(in_div).innerHTML = "";
+    let result = "";
 
-//     for (product in userws[user]["cart"]){
-//         if (){}
-//     }
+    for (product in users[user]["cart"]){
+        if (users[user]["cart"][product][3]==true){
+            let st = users[user]["cart"][product][0];
+            let i = users[user]["cart"][product][1];
+            let item = shops[st]["catalog"][i];
+            result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
+            result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}])><label>in store</label><br></br>`;
+        }
+    }
     
+    document.getElementById(in_div).innerHTML = result;
+}
 
-// }
+document.addEventListener("DOMContentLoaded", function () {
+    loadCartItems("cart-section");
+    load_instore("inStoreContent");
+});
