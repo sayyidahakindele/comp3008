@@ -266,33 +266,42 @@ function SearchCart() {
     const input = document.getElementById('searchInput');
     const filter = input.value.toUpperCase();
     const items = document.getElementsByClassName('flex-container');
-    const notFoundMessage = document.getElementById('not-found-message');
-    
+    const cartDiv = document.getElementById('cart-section');
+
     let itemsFound = false;
   
     for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      const itemNameElement = item.querySelector('p');
-      let itemName = "";
-  
-      if (itemNameElement) {
-        itemName = itemNameElement.innerText;
-      }
-  
-      if (itemName.toUpperCase().indexOf(filter) > -1) {
-        item.style.display = '';
-        itemsFound = true;
-      } else {
-        item.style.display = 'none';
-      }
+        const item = items[i];
+        const itemNameElement = item.querySelector('p');
+        let itemName = "";
+
+        if (itemNameElement) {
+            itemName = itemNameElement.innerText;
+        }
+
+        if (itemName.toUpperCase().indexOf(filter) > -1) {
+            item.style.display = '';
+            itemsFound = true;
+        } else {
+            item.style.display = 'none';
+        }
     }
-  
-    if (itemsFound) {
-      notFoundMessage.style.display = 'none';
-    } else {
-      notFoundMessage.style.display = '';
+
+    let notFoundDiv = cartDiv.querySelector(".not-found");
+
+    if (!itemsFound) {
+        if (!notFoundDiv) {
+            notFoundDiv = document.createElement("div");
+            notFoundDiv.classList.add("not-found");
+            cartDiv.appendChild(notFoundDiv);
+        }
+        notFoundDiv.innerHTML = "Item not found";
+        notFoundDiv.style.display = '';
+    } else if (notFoundDiv) {
+        notFoundDiv.style.display = 'none';
     }
 }
+
 
 
 

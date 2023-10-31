@@ -33,6 +33,14 @@
       "PackagePath": "staticwebassets/TH_logo.png"
     },
     {
+      "Id": "/workspaces/comp3008/wwwroot/Zara blackjeans.jpg",
+      "PackagePath": "staticwebassets/Zara blackjeans.jpg"
+    },
+    {
+      "Id": "/workspaces/comp3008/wwwroot/Zara blackshirt.jpg",
+      "PackagePath": "staticwebassets/Zara blackshirt.jpg"
+    },
+    {
       "Id": "/workspaces/comp3008/wwwroot/Zara_logo.png",
       "PackagePath": "staticwebassets/Zara_logo.png"
     },

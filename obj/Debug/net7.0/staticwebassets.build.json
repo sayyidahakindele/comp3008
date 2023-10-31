@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "RRbsfp7pNJEOSUD6B7Hf+fAR4NMnDrZf3u+8sh4hs4I=",
+  "Hash": "2CXvIBtzUvdBZwhl3nDjtuN6+Wb3c2rLLN/DCyk81AE=",
   "Source": "MyWebApp",
   "BasePath": "_content/MyWebApp",
   "Mode": "Default",
@@ -1018,6 +1018,40 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/TH_logo.png"
+    },
+    {
+      "Identity": "/workspaces/comp3008/wwwroot/Zara blackjeans.jpg",
+      "SourceId": "MyWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/comp3008/wwwroot/",
+      "BasePath": "_content/MyWebApp",
+      "RelativePath": "Zara blackjeans.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Zara blackjeans.jpg"
+    },
+    {
+      "Identity": "/workspaces/comp3008/wwwroot/Zara blackshirt.jpg",
+      "SourceId": "MyWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/comp3008/wwwroot/",
+      "BasePath": "_content/MyWebApp",
+      "RelativePath": "Zara blackshirt.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/Zara blackshirt.jpg"
     },
     {
       "Identity": "/workspaces/comp3008/wwwroot/Zara_logo.png",

@@ -286,3 +286,9 @@ body {
     transform: translate(0%, -50%);
     /* ... other styles ... */
 }
+
+.not-found{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 20;
+}
