@@ -431,15 +431,14 @@ function instoreCheck(li,check_id) {
     
     for (item in users[user]["cart"]){
         if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
-            console.log(document.getElementById(check_id).checked);
             if (document.getElementById(check_id).checked){
                 users[user]["cart"][item][3]=true;
             }
             else {
                 users[user]["cart"][item][3]=false;
             }
-            console.log(users[user]["cart"]);
             
+            load_instore("inStoreContent");
             
             // else if (users[user]["cart"][item][3]==true ){
             //     users[user]["cart"][item][3]=false;
@@ -455,6 +454,7 @@ function instoreCheck(li,check_id) {
 }
 
 function load_instore(in_div){
+    console.log("instore started loading");
     document.getElementById(in_div).innerHTML = "";
     let result = "";
 
@@ -464,14 +464,16 @@ function load_instore(in_div){
             let i = users[user]["cart"][product][1];
             let item = shops[st]["catalog"][i];
             result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
-            result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}])><label>in store</label><br></br>`;
+            result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${users[user]["cart"][product][2]}],"${st},${i},check")><label>in store</label><br></br>`;
         }
     }
+
+    console.log("instore loaded");
     
     document.getElementById(in_div).innerHTML = result;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("click", function () {
     loadCartItems("cart-section");
     load_instore("inStoreContent");
 });
