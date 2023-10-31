@@ -13,19 +13,19 @@ let users = {
     2:{user_name:"jack",email:"jack@you.com",password:"jack123",cart:{}}}
 
 //id:{store_name,address,catalog:{id,item_name,price,item_amount,in_store,store_id,rating (out of 5)}}
-shops = {0:{name:"Zara",address:"123 zara ave",catalog:{
-    0:{item_name:"Black shirt",price:400,amount:5,in_store:false,store_id:0,rating:3, image: "Zara blackshirt.jpg"},
-    1:{item_name:"Black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5, image: "Zara blackjeans.jpg"},
-    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, mage: "Zara blackshirt.jpg"}}},
-1:{name:"NorthFace",address:"123 northface ave",catalog:{
-    0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4},
-    1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5},
-    2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2},
+shops = {0:{name:"zara",address:"123 zara ave",catalog:{
+    0:{item_name:"Black shirt",price:400,amount:5,in_store:false,store_id:0,rating:3, image: "Zara blackshirt.jpg", size:"L"},
+    1:{item_name:"Black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5, image: "Zara blackjeans.jpg", size: "M"},
+    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, mage: "Zara blackshirt.jpg", size:"S"}}},
+1:{name:"northFace",address:"123 northface ave",catalog:{
+    0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4, size:"XS"},
+    1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5,size:"L"},
+    2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2,size:"M"},
     3:{item_name:"Boxer",price:2,amount:45,in_store:false,store_id:1,rating:2}}},
-2:{name:"H&M",address:"123 H&M ave",catalog:{
-    0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5},
-    1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4},
-    2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4},
+2:{name:"h&m",address:"123 H&M ave",catalog:{
+    0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5,size:"XL"},
+    1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4,size:"XS"},
+    2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,size:"M"},
     3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -83,10 +83,11 @@ function loadproducts(store, product_div) {
         //adds in the individual clothing items
         result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> 
                    <div> <p>${item.item_name}</p> <p>Store: ${st.name}; </p> 
-                   <p>Size: Large</p> 
+                   <p>Size: ${item.size}</p> 
                    <p>Price: $${item.amount}</p> 
                    </div>`;
-        result += `<div><button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button></div>`;
+        result += `<div><button type="button" id="myBtn" onclick="product_add_button(${store},${id},${st["name"]+"_cart"})">+</button></div>`;
+        console.log(`product_add_button(${store},${id},${st["name"]+"_cart"})`);
     });
 
     // Set the innerHTML of the target div
@@ -95,6 +96,14 @@ function loadproducts(store, product_div) {
     // Your logging statements
     console.log(shops);
     console.log("Loading products for:", product_div);
+}
+
+
+
+function product_add_button(store_id,item_id,store_cart_div){
+    spec_cart(store_id,store_cart_div);
+    addtocart(store_id,item_id);
+
 }
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -187,6 +196,8 @@ function addtocart(store_id,item_id){
     }  
 
     cartTotal();
+    loadCartItems("cart-section");
+    load_instore("inStoreContent");
 
 };
 
@@ -244,11 +255,12 @@ function loadCartItems(cart_div) {
                                 <p>Name: ${item.item_name}</p> 
                                 <p>Store: ${shops[st]["name"]} </p>
                                 <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
-                                <p id="size">Size: Large</p> 
+                                <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${users[user]["cart"][product][2]}</p>
+                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${users[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},amount")>
+                                <button id="${st},${i},button"  onclick="put_instore([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                             </div>
-                            <button id="${st},${i},button"  onclick="put_instore([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                         </div>
                         </div>`;
         }
@@ -331,7 +343,7 @@ function spec_cart(s,cart_div){
             let xx = shops[s]["catalog"][ttemp[item][1]]
             console.log(item[1])
             console.log(xx)
-            result += ` <div> <p>"name: "${xx.item_name}</p> <p>Size: Large</p> <p>Price: $${xx.price}</p><p>Amount: ${xx["amount"]}</p> </div>`;
+            result += ` <div> <p>"name: "${xx.item_name}</p> <p>Size: ${item.size}</p> <p>Price: $${xx.price}</p><p>Amount: ${xx["amount"]}</p> </div>`;
             result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
         }
     }
@@ -383,7 +395,7 @@ function put_instore(li,item_div_id){
             // temp.remove;
 
             load_instore("inStoreContent");
-            loadCartItems("document.getElementById(cart_div).innerHTML = result;");
+            loadCartItems("cart-section");
         }
     }
 }
@@ -403,22 +415,42 @@ function put_indelivery(li,item_div_id){
 }
 
 function load_instore(in_div){
-    console.log("instore started loading");
+    // console.log("instore started loading");
     document.getElementById(in_div).innerHTML = "";
     let result = "";
+    const ratings = [];  // To store ratings and corresponding element IDs
 
     for (product in users[user]["cart"]){
         if (users[user]["cart"][product][3]==true){
             let st = users[user]["cart"][product][0];
             let i = users[user]["cart"][product][1];
             let item = shops[st]["catalog"][i];
-            result += ` <div id="${st+","+i},st">  <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p>`;
+            const ratingId = `rating-${st}-${i}`;  // Unique ID for the rating span
+            ratings.push({id: ratingId, rating: item.rating});  // Store rating info
+
+            result += `<div class="flex-container">
+                        <img src="${item.image}" alt="${item.item_name}" style="margin-top: -20px; width: 159px; height: 190px;">
+                        <div id="itembox">
+                            <div id="${st},${i},del"> 
+                                <p>Name: ${item.item_name}</p> 
+                                <p>Store: ${shops[st]["name"]} </p>
+                                <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
+                                <p id="size">Size: ${item.size}</p> 
+                                <p id="Price">Price: $${item.price}</p>
+                                <p>Amount: ${users[user]["cart"][product][2]}</p>
+                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${users[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},amount")>
+                                <button id="${st},${i},button"  onclick="put_indelivery([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
+                            </div>
+                        </div>
+                        </div>`;
+
+            // result += ` <div id="${st+","+i},st">  <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p>`;
             // result += `<input id="${st},${i},check"  type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br>`;
-            result += `<button id = "${st},${i},button"  onclick=put_indelivery([${st},${i},${users[user]["cart"][product][2]}],"${st+","+i},st")>To Instore</button><br></br></div>`;
+            // result += `<button id = "${st},${i},button"  onclick=put_indelivery([${st},${i},${users[user]["cart"][product][2]}],"${st+","+i},st")>To Instore</button><br></br></div>`;
         }
     }
 
-    console.log("instore loaded");
+    // console.log("instore loaded");
     
     document.getElementById(in_div).innerHTML = result;
 
@@ -440,6 +472,48 @@ document.addEventListener("click", function () {
     load_instore("inStoreContent");
       
 });
+
+function updateamount(i,amount_id){
+    console.log("testers fa");
+    for (item in users[user]["cart"]){
+        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+            // console.log(document.getElementById(amount_id).value);
+            if (document.getElementById(amount_id).value==0){
+                delete_item(i,);
+                loadCartItems("cart-section");
+            }
+            else{
+                users[user]["cart"][item][2]=document.getElementById(amount_id).value;
+            }
+        }
+    }
+    console.log("amount updated");
+    // loadcartItems("cart-section");
+    loadCartItems("cart-section");
+    load_instore("inStoreContent");
+
+}
+
+function delete_item_instore(i){
+
+    let found = true;
+    for (item in users[user]["cart"]){
+        console.log(item);
+        if (found){
+            users[user]["cart"][item]=users[user]["cart"][item+1];
+        }
+        else if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+            found = true;
+        }
+    }
+
+    delete users[user]["cart"][users[user]["cart"].length-1];
+    // console.log(users[user]["cart"]);
+
+
+
+}
+
 
 
 
