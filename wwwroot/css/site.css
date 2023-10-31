@@ -20,3 +20,50 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#Price {
+  margin-top: -40px;  /* Adjust the top margin */
+  margin-left: 180px; /* Adjust the left margin */
+}
+/* 
+#itembox {
+  margin-left: 170px;
+} */
+
+#size {
+  margin-top: -20px; 
+}
+/* .star-rating {
+  margin-top: -10px;
+  margin-left: 180px;
+  position: relative;
+  display: inline-block;
+} */
+.star-rating {
+  transform: translateY(-40px);
+  margin-left: 180px;
+  display: inline-block;
+}
+
+
+
+#star-rating span.filled {
+  color: black;
+}
+
+#star span {
+  margin-left: 50px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center; /* This will vertically center align the items */
+  gap: 20px; /* Add some space between image and item box */
+}
+
+.item-image {
+  width: 100px;
+  height: 100px; /* Or whatever size you prefer */
+  object-fit: cover; /* This will make sure the image covers the area without stretching */
+}
+

@@ -14,19 +14,19 @@ let users = {
 
 //id:{store_name,address,catalog:{id,item_name,price,item_amount,in_store,store_id,rating (out of 5)}}
 shops = {0:{name:"Zara",address:"123 zara ave",catalog:{
-    0:{item_name:"black shirt",price:400,amount:5,in_store:false,store_id:0,rateing:3},
-    1:{item_name:"black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5},
-    2:{item_name:"blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3}}},
+    0:{item_name:"Black shirt",price:400,amount:5,in_store:false,store_id:0,rating:3, image: "Zara blackshirt.jpg"},
+    1:{item_name:"Black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5, image: "Zara blackjeans.jpg"},
+    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, mage: "Zara blackshirt.jpg"}}},
 1:{name:"NorthFace",address:"123 northface ave",catalog:{
-    0:{item_name:"black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4},
-    1:{item_name:"black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5},
-    2:{item_name:"blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2},
-    3:{item_name:"boxer",price:2,amount:45,in_store:false,store_id:1,rating:2}}},
+    0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4},
+    1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5},
+    2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2},
+    3:{item_name:"Boxer",price:2,amount:45,in_store:false,store_id:1,rating:2}}},
 2:{name:"H&M",address:"123 H&M ave",catalog:{
-    0:{item_name:"black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5},
-    1:{item_name:"black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4},
-    2:{item_name:"blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4},
-    3:{item_name:"boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
+    0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5},
+    1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4},
+    2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4},
+    3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
 
 document.addEventListener("DOMContentLoaded", function () {
     const budgetInput = document.getElementById("budget");
@@ -81,7 +81,11 @@ function loadproducts(store, product_div) {
     Object.keys(cat).forEach(id => {
         let item = cat[id];
         //adds in the individual clothing items
-        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> <div> <p>${item.item_name}</p> <p>Store: ${st.name}; M</p> <p>Size: Large</p> <p>Price: $${item.amount}</p> </div>`;
+        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> 
+                   <div> <p>${item.item_name}</p> <p>Store: ${st.name}; </p> 
+                   <p>Size: Large</p> 
+                   <p>Price: $${item.amount}</p> 
+                   </div>`;
         result += `<div><button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button></div>`;
     });
 
@@ -150,158 +154,6 @@ function filterStores() {
     }
 }
 
-// function addtocart(store_id,item_id){
-
-//     console.log("see me");
-//     let incart = false;
-
-//    for (const key in users[user]["cart"]){
-//         if (users[user]["cart"][key][1]==item_id){
-//             incart=true;
-
-//             // console.log("before add");
-//             // console.log(users[user]["cart"]);
-//             users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
-//             // console.log("after add");
-//             // console.log(users[user]["cart"]);
-//             //updatestorecart()
-
-//         };
-//     };
-
-//     if (incart==false){
-//         // addtostorecart();
-//         let keys = Object.keys(users[user]["cart"]);
-//         let newkey = keys;
-//         // console.log("before add");
-//         // console.log(users[user]["cart"]);
-//         users[user]["cart"][keys.length]=[store_id,item_id,1,false]
-//         // console.log("after add");
-//         // console.log(users[user]["cart"]);
-//         // console.log(keys.length);
-//     }  
-
-//     cartTotal();
-
-// };
-
-// function cartTotal(){//sums up the price of cloths stored in the cart
-//     console.log("runs");
-//     let ct = users[user]["cart"];//local cart variable
-//     let total = 0;//the total 
-//     // console.log(ct);
-
-//     // console.log(ct);
-
-//     for (key in ct){//loops over the cart
-//         // console.log(shops[ct[key][0]]["catalog"]);
-//         total+=shops[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
-//         // console.log("total: "+total);
-//     } 
-//     // console.log(total);
-//     return total;
-// };
-
-
-// console.log("before cart total");
-// let to = cartTotal();
-// console.log(to);
-// // cartTotal()
-
-// function displayTotal(total_div){
-//     console.log("testing");
-//     let t = cartTotal();
-//     let result ="";
-//     result += `<p>Total: ${t}</p>`;
-//     document.getElementById(total_div).innerHTML = result;
-// }
-
-// displayTotal("zara_total");
-
-
-// function LoadcartItems(cart_div) {
-//     // const cart = JSON.parse(localStorage.getItem('cart')) || [];
-//     document.getElementById(cart_div).innerHTML = "";
-//     let result = ""
-//     result += "<h2>cart</h2>";
-//     console.log(users[user]["cart"]);
-
-//     for (product in users[user]["cart"]){
-//         console.log("fire");
-//         let st = users[user]["cart"][product][0];
-//         let i = users[user]["cart"][product][1];
-//         let item = shops[st]["catalog"][i];
-//         result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
-//         result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}])><label>in store</label><br></br>`;
-        
-//     };
-
-//     document.getElementById(cart_div).innerHTML = result;
-// };
-
-// LoadcartItems("zara_cart");
-
-// function loadzara(){
-//     displayTotal("zara_total");
-//     loadproducts(0,"zara_products");
-//     loadCartItems("zara_cart");
-
-
-// }
-
-// function spec_cart(s,cart_div){
-//     ocument.getElementById(cart_div).innerHTML = "";
-//     let result = ""
-//     // result += "<h2>cart</h2>";
-//     console.log(users[user]["cart"]);
-
-//     for (product in users[user]["cart"]){
-//         console.log("fire");
-//         let st = users[user]["cart"][product][0];
-//         if (st==s){
-//             let i = users[user]["cart"][product][1];
-//             let item = shops[st]["catalog"][i];
-//             result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p> </div>`;
-//         }
-//     };
-
-//     document.getElementById(cart_div).innerHTML = result;
-// }
-
-// displayTotal("cart_total");
-
-// document.addEventListener("DOMContentLoaded", function() {
-//     loadCartItems("cart_div");
-// });
-
-// //input is a list [store_id,item_id],amount
-// function instoreCheck(li) {
-    
-//     for (item in users[user]["cart"]){
-//         if (item==li[1]){
-//             if (users[user]["cart"][item]==true){
-//                 users[user]["cart"][item]=false;
-//             }
-//             else{
-//                 users[user]["cart"][item]=true;
-//             }
-//         }
-//     }
-
-//     console.log(users[user]["cart"][item]);
-    
-// }
-
-// function load_instore(in_div){
-//     document.getElementById(in_div).innerHTML = "";
-//     let result = "";
-
-//     for (product in userws[user]["cart"]){
-//         if (){}
-//     }
-    
-
-// }
 
 function addtocart(store_id,item_id){
 
@@ -373,26 +225,87 @@ displayTotal("zara_total");
 
 
 function loadCartItems(cart_div) {
-    // const cart = JSON.parse(localStorage.getItem('cart')) || [];
     document.getElementById(cart_div).innerHTML = "";
-    let result = ""
-    // result += "<h2>cart</h2>";
-    console.log(users[user]["cart"]);
+    let result = "";
+    const ratings = [];  // To store ratings and corresponding element IDs
 
-    for (product in users[user]["cart"]){
-        console.log(users[user]["cart"][product]);
-        if (users[user]["cart"][product][3]==false){
-            let st = users[user]["cart"][product][0];
-            let i = users[user]["cart"][product][1];
-            let item = shops[st]["catalog"][i];
-            result += ` <div id="${st+","+i},del"> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> `;
-            // result += `<input id = "${st},${i},check" type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br></div>`;
-            result += `<button id = "${st},${i},button"  onclick=put_instore([${st},${i},${users[user]["cart"][product][2]}],"${st+","+i},del")>To Instore</button><br></br></div>`;
+    for (const product in users[user]["cart"]) {
+        if (!users[user]["cart"][product][3]) {
+            const st = users[user]["cart"][product][0];
+            const i = users[user]["cart"][product][1];
+            const item = shops[st]["catalog"][i];
+            const ratingId = `rating-${st}-${i}`;  // Unique ID for the rating span
+            ratings.push({id: ratingId, rating: item.rating});  // Store rating info
+
+            result += `<div class="flex-container">
+                        <img src="${item.image}" alt="${item.item_name}" style="margin-top: -20px; width: 159px; height: 190px;">
+                        <div id="itembox">
+                            <div id="${st},${i},del"> 
+                                <p>Name: ${item.item_name}</p> 
+                                <p>Store: ${shops[st]["name"]} </p>
+                                <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
+                                <p id="size">Size: Large</p> 
+                                <p id="Price">Price: $${item.price}</p>
+                                <p>Amount: ${users[user]["cart"][product][2]}</p>
+                            </div>
+                            <button id="${st},${i},button"  onclick="put_instore([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
+                        </div>
+                        </div>`;
         }
-    };
+    }
 
     document.getElementById(cart_div).innerHTML = result;
-};
+   
+    // Replace placeholders with star elements
+    for (const {id, rating} of ratings) {
+        showRating(rating, id);
+    }
+}
+
+function SearchCart() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toUpperCase();
+    const items = document.getElementsByClassName('flex-container');
+    const notFoundMessage = document.getElementById('not-found-message');
+    
+    let itemsFound = false;
+  
+    for (let i = 0; i < items.length; i++) {
+      const item = items[i];
+      const itemNameElement = item.querySelector('p');
+      let itemName = "";
+  
+      if (itemNameElement) {
+        itemName = itemNameElement.innerText;
+      }
+  
+      if (itemName.toUpperCase().indexOf(filter) > -1) {
+        item.style.display = '';
+        itemsFound = true;
+      } else {
+        item.style.display = 'none';
+      }
+    }
+  
+    if (itemsFound) {
+      notFoundMessage.style.display = 'none';
+    } else {
+      notFoundMessage.style.display = '';
+    }
+}
+
+
+
+function showRating(rating, containerId) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = ""; // Clear any existing content
+    for (let i = 1; i <= 5; i++) {
+        const star = document.createElement('span');
+        star.innerHTML = "&#9733;"; // Star character
+        star.style.color = (i <= rating) ? 'Black' : 'lightgray';
+        container.appendChild(star);
+    }
+}
 
 loadCartItems("zara_cart");
 
@@ -427,6 +340,7 @@ displayTotal("cart_total");
 
 document.addEventListener("DOMContentLoaded", function() {
     loadCartItems("cart_div");
+
 });
 
 //input is a list [store_id,item_id],amount
@@ -466,7 +380,7 @@ function put_instore(li,item_div_id){
             // temp.remove;
 
             load_instore("inStoreContent");
-            loadCartItems("cart-section");
+            loadCartItems("document.getElementById(cart_div).innerHTML = result;");
         }
     }
 }
@@ -517,7 +431,13 @@ function load_instore(in_div){
     // }
 }
 
+
 document.addEventListener("click", function () {
     loadCartItems("cart-section");
     load_instore("inStoreContent");
+      
 });
+
+
+
+  
