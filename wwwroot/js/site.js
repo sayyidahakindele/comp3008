@@ -431,12 +431,14 @@ function instoreCheck(li,check_id) {
     
     for (item in users[user]["cart"]){
         if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
+            console.log(document.getElementById(check_id).checked);
             if (document.getElementById(check_id).checked){
                 users[user]["cart"][item][3]=true;
             }
             else {
                 users[user]["cart"][item][3]=false;
             }
+            console.log(users[user]["cart"]);
             
             
             // else if (users[user]["cart"][item][3]==true ){
@@ -448,7 +450,7 @@ function instoreCheck(li,check_id) {
         }
     }
     // console.log(users[user]["cart"]);
-    console.log(users[user]["cart"][item]);
+    // console.log(users[user]["cart"][item]);
     
 }
 
