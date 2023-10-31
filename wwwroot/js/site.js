@@ -266,42 +266,33 @@ function SearchCart() {
     const input = document.getElementById('searchInput');
     const filter = input.value.toUpperCase();
     const items = document.getElementsByClassName('flex-container');
-    const cartDiv = document.getElementById('cart-section');
-
+    const notFoundMessage = document.getElementById('not-found-message');
+    
     let itemsFound = false;
   
     for (let i = 0; i < items.length; i++) {
-        const item = items[i];
-        const itemNameElement = item.querySelector('p');
-        let itemName = "";
-
-        if (itemNameElement) {
-            itemName = itemNameElement.innerText;
-        }
-
-        if (itemName.toUpperCase().indexOf(filter) > -1) {
-            item.style.display = '';
-            itemsFound = true;
-        } else {
-            item.style.display = 'none';
-        }
+      const item = items[i];
+      const itemNameElement = item.querySelector('p');
+      let itemName = "";
+  
+      if (itemNameElement) {
+        itemName = itemNameElement.innerText;
+      }
+  
+      if (itemName.toUpperCase().indexOf(filter) > -1) {
+        item.style.display = '';
+        itemsFound = true;
+      } else {
+        item.style.display = 'none';
+      }
     }
-
-    let notFoundDiv = cartDiv.querySelector(".not-found");
-
-    if (!itemsFound) {
-        if (!notFoundDiv) {
-            notFoundDiv = document.createElement("div");
-            notFoundDiv.classList.add("not-found");
-            cartDiv.appendChild(notFoundDiv);
-        }
-        notFoundDiv.innerHTML = "Item not found";
-        notFoundDiv.style.display = '';
-    } else if (notFoundDiv) {
-        notFoundDiv.style.display = 'none';
+  
+    if (itemsFound) {
+      notFoundMessage.style.display = 'none';
+    } else {
+      notFoundMessage.style.display = '';
     }
 }
-
 
 
 
@@ -316,7 +307,7 @@ function showRating(rating, containerId) {
     }
 }
 
-loadCartItems("zara_cart");
+// loadCartItems("zara_cart");
 
 function loadzara(){
     displayTotal("zara_total");
@@ -327,20 +318,23 @@ function loadzara(){
 }
 
 function spec_cart(s,cart_div){
-    ocument.getElementById(cart_div).innerHTML = "";
+    console.log("reached")
+    document.getElementById(cart_div).innerHTML = "";
     let result = ""
-    result += "<h2>cart</h2>";
+    result += "<br><h2>Cart</h2>";
     console.log(users[user]["cart"]);
 
-    for (product in users[user]["cart"]){
-        console.log("fire");
-        let st = users[user]["cart"][product][0];
-        if (st==s){
-            let i = users[user]["cart"][product][1];
-            let item = shops[st]["catalog"][i];
-            result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p> </div>`;
+    let ttemp = users[user]["cart"]
+    for (item in ttemp){
+        console.log(ttemp[item])
+        if(ttemp[item][0] == s){
+            let xx = shops[s]["catalog"][ttemp[item][1]]
+            console.log(item[1])
+            console.log(xx)
+            result += ` <div> <p>"name: "${xx.item_name}</p> <p>Size: Large</p> <p>Price: $${xx.price}</p><p>Amount: ${xx["amount"]}</p> </div>`;
+            result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
         }
-    };
+    }
 
     document.getElementById(cart_div).innerHTML = result;
 }
