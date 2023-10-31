@@ -385,7 +385,7 @@ function loadCartItems(cart_div) {
         let i = users[user]["cart"][product][1];
         let item = shops[st]["catalog"][i];
         result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
-        result += `<input id = "${st},${i},check" type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},check")><label>in store</label><br></br>`;
+        result += `<input id = "${st},${i},check" type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br>`;
     };
 
     document.getElementById(cart_div).innerHTML = result;
@@ -464,13 +464,24 @@ function load_instore(in_div){
             let i = users[user]["cart"][product][1];
             let item = shops[st]["catalog"][i];
             result += ` <div> <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p> </div>`;
-            result += `<input type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${users[user]["cart"][product][2]}],"${st},${i},check")><label>in store</label><br></br>`;
+            result += `<input id="${st},${i},check"  type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br>`;
         }
     }
 
     console.log("instore loaded");
     
     document.getElementById(in_div).innerHTML = result;
+
+    for (product in users[user]["cart"]){
+        if (users[user]["cart"][product][3]==true){
+            let st = users[user]["cart"][product][0];
+            let i = users[user]["cart"][product][1];
+            let item = shops[st]["catalog"][i];
+
+            console.log("\""+st+","+i+",check\"");
+            document.getElementById(`${"\""+st+","+i+",check\""}`).checked = true;
+        }
+    }
 }
 
 document.addEventListener("click", function () {
