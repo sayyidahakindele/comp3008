@@ -5,6 +5,7 @@
 
 let user = 0
 
+
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
 let users = {
@@ -243,7 +244,7 @@ function loadCartItems(cart_div) {
                             <div id="${st},${i},del"> 
                                 <p>Name: ${item.item_name}</p> 
                                 <p>Store: ${shops[st]["name"]} </p>
-                                <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
+                                <span class="star-rating" id="${ratingId}" data-rating="${item.rating}">Rating: ${item.rating}</span> 
                                 <p id="size">Size: Large</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${users[user]["cart"][product][2]}</p>
@@ -261,6 +262,7 @@ function loadCartItems(cart_div) {
         showRating(rating, id);
     }
 }
+
 
 function SearchCart() {
     const input = document.getElementById('searchInput');
@@ -366,16 +368,8 @@ function instoreCheck(li,check_id) {
             
             load_instore("inStoreContent");
             
-            // else if (users[user]["cart"][item][3]==true ){
-            //     users[user]["cart"][item][3]=false;
-            // }
-            // else{
-            //     users[user]["cart"][item][3]=true;
-            // }
         }
     }
-    // console.log(users[user]["cart"]);
-    // console.log(users[user]["cart"][item]);
     
 }
 
@@ -427,26 +421,142 @@ function load_instore(in_div){
     console.log("instore loaded");
     
     document.getElementById(in_div).innerHTML = result;
-
-    // for (product in users[user]["cart"]){
-    //     if (users[user]["cart"][product][3]==true){
-    //         let st = users[user]["cart"][product][0];
-    //         let i = users[user]["cart"][product][1];
-    //         let item = shops[st]["catalog"][i];
-
-    //         console.log("\""+st+","+i+",check\"");
-    //         document.getElementById(`${"\""+st+","+i+",check\""}`).checked = true;
-    //     }
-    // }
 }
 
 
-document.addEventListener("click", function () {
-    loadCartItems("cart-section");
-    load_instore("inStoreContent");
-      
-});
-
-
+function sortProducts() {
+    const criteria = document.getElementById('sortCriteria').value;
+    for (const storeId in shops) {
+      sortStoreProducts(storeId, criteria);
+    }
+  }
+  
+  function sortStoreProducts(storeId, criteria) {
+    const store = shops[storeId];
+    const productsArray = Object.values(store.catalog);
+    
+    productsArray.sort((a, b) => {
+      if (criteria === 'name') {
+        return a.item_name.localeCompare(b.item_name);
+      } else if (criteria === 'price') {
+        return a.price - b.price;
+      } else if (criteria === 'store') {
+        return shops[a.store_id].name.localeCompare(shops[b.store_id].name);
+      } else if (criteria === 'rating') {
+        return b.rating - a.rating; // Sorting by rating in descending order
+      }
+    });
+  
+    // Update the catalog with sorted products
+    store.catalog = {};
+    productsArray.forEach((product, index) => {
+      store.catalog[index] = product;
+    });
+  
+    // Re-load products to reflect the changes
+    loadproducts(storeId, `${store.name.toLowerCase()}_products`);
+  }
 
   
+//   function SortAndFilterCart() {
+//     const sortDropdown = document.getElementById('sortDropdown');
+//     const sortBy = sortDropdown.value;
+//     const itemsContainer = document.getElementById('cart-section');
+
+//     console.log(document.getElementById('cart-section'))
+
+//     if (!itemsContainer) {
+//         console.error('The cart items container was not found.');
+//         return;
+//     }
+
+//     let items = Array.from(document.getElementsByClassName('flex-container'));
+
+//     // Sorting the items based on the selected criteria
+//     items.sort((a, b) => {
+//         let aValue, bValue;
+
+//         if (sortBy === 'name') {
+//             aValue = a.querySelector('#itembox div p:nth-child(1)').innerText.split(': ')[1];
+//             bValue = b.querySelector('#itembox div p:nth-child(1)').innerText.split(': ')[1];
+//         } else if (sortBy === 'store') {
+//             aValue = a.querySelector('#itembox div p:nth-child(2)').innerText.split(': ')[1];
+//             bValue = b.querySelector('#itembox div p:nth-child(2)').innerText.split(': ')[1];
+//         } else if (sortBy === 'rating') {
+//             aValue = a.querySelector('#itembox div .star-rating').innerText.split(': ')[1];
+//             bValue = b.querySelector('#itembox div .star-rating').innerText.split(': ')[1];
+//             return parseFloat(aValue) - parseFloat(bValue);
+//         } else if (sortBy === 'size') {
+//             aValue = a.querySelector('#itembox div p#size').innerText.split(': ')[1];
+//             bValue = b.querySelector('#itembox div p#size').innerText.split(': ')[1];
+//         } else if (sortBy === 'price') {
+//             aValue = a.querySelector('#itembox div p#Price').innerText.split(': $')[1];
+//             bValue = b.querySelector('#itembox div p#Price').innerText.split(': $')[1];
+//             return parseFloat(aValue) - parseFloat(bValue);
+//         }
+
+//         return aValue.localeCompare(bValue);
+//     });
+
+//     // Clearing the current items in the container
+//     itemsContainer.innerHTML = '';
+
+//     // Appending the sorted items back to the container
+//     items.forEach(item => itemsContainer.appendChild(item));
+
+//     // Now, apply the search filter
+//     SearchCart();
+// }
+
+function SortAndFilterCart() {
+    const sortDropdown = document.getElementById('sortDropdown');
+    const sortBy = sortDropdown.value;
+    const itemsContainer = document.getElementById('cart-section');
+
+    if (!itemsContainer) {
+        console.error('The cart items container was not found.');
+        return;
+    }
+
+    let items = Array.from(document.getElementsByClassName('flex-container'));
+
+    // Sorting the items based on the selected criteria
+    items.sort((a, b) => {
+        let aValue, bValue;
+
+        if (sortBy === 'name' || sortBy === 'store') {
+            aValue = a.querySelector(`div p:nth-child(${sortBy === 'name' ? 1 : 2})`).innerText.split(': ')[1];
+            bValue = b.querySelector(`div p:nth-child(${sortBy === 'name' ? 1 : 2})`).innerText.split(': ')[1];
+            return aValue.localeCompare(bValue);
+        } else if (['rating', 'rating_low_high', 'rating_high_low'].includes(sortBy)) {
+            aValue = parseInt(a.querySelector('.star-rating').getAttribute('data-rating'));
+            bValue = parseInt(b.querySelector('.star-rating').getAttribute('data-rating'));
+            return sortBy === 'rating_high_low' ? bValue - aValue : aValue - bValue;
+        } else if (['size', 'size_small_large', 'size_large_small'].includes(sortBy)) {
+            const sizeOrder = ["Small", "Medium", "Large"];
+            aValue = sizeOrder.indexOf(a.querySelector('p#size').innerText.split(': ')[1]);
+            bValue = sizeOrder.indexOf(b.querySelector('p#size').innerText.split(': ')[1]);
+            return sortBy === 'size_large_small' ? bValue - aValue : aValue - bValue;
+        } else if (sortBy === 'price_low_high') {
+            aValue = parseFloat(a.querySelector('p#Price').innerText.split(': $')[1]);
+            bValue = parseFloat(b.querySelector('p#Price').innerText.split(': $')[1]);
+            return aValue - bValue;
+        } else if (sortBy === 'price_high_low') {
+            aValue = parseFloat(a.querySelector('p#Price').innerText.split(': $')[1]);
+            bValue = parseFloat(b.querySelector('p#Price').innerText.split(': $')[1]);
+            return bValue - aValue;
+        } else {
+            // Default case, if none of the above conditions are met
+            return 0;
+        }
+    });
+
+    // Clearing the current items in the container
+    itemsContainer.innerHTML = '';
+
+    // Appending the sorted items back to the container
+    items.forEach(item => itemsContainer.appendChild(item));
+
+    // Now, apply the search filter
+    SearchCart();
+}
