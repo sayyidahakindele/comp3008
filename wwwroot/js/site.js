@@ -274,9 +274,12 @@ function cartTotal(){//sums up the price of cloths stored in the cart
     // console.log(ct);
 
     for (key in ct){//loops over the cart
-        // console.log(shops[ct[key][0]]["catalog"]);
-        total+=shopsT[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
-        // console.log("total: "+total);
+        console.log(ct[key][3]);
+        if (!(ct[key][3])){
+            // console.log(shops[ct[key][0]]["catalog"]);
+            total+=shopsT[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
+            // console.log("total: "+total);
+        }
     } 
     // console.log(total);
     return total;
