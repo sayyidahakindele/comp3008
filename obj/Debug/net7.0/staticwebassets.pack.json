@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets/Zara_logo.png"
     },
     {
+      "Id": "/workspaces/comp3008/wwwroot/boots.jpg",
+      "PackagePath": "staticwebassets/boots.jpg"
+    },
+    {
       "Id": "/workspaces/comp3008/wwwroot/css/delivery.css",
       "PackagePath": "staticwebassets/css/delivery.css"
     },

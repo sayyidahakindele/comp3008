@@ -21,13 +21,13 @@ shops = {0:{name:"zara",address:"123 zara ave",catalog:{
 1:{name:"northFace",address:"123 northface ave",catalog:{
     0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4, image: "Zara blackshirt.jpg", size:"XS"},
     1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5, image: "Zara blackjeans.jpg", size:"L"},
-    2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2, image: "Zara bluejeans.jpg", size:"M"},
+    2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2, image: "Zara bluejeans.png", size:"M"},
     3:{item_name:"Boxer",price:2,amount:45,in_store:false,store_id:1,rating:2}}},
 2:{name:"h&m",address:"123 H&M ave",catalog:{
-    0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5,size:"XL"},
-    1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4,size:"XS"},
-    2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,size:"M"},
-    3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
+    0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5,image: "Zara blackshirt.jpg", size:"XL"},
+    1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4,image: "Zara blackjeans.jpg", size:"XS"},
+    2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,image: "Zara bluejeans.png",size:"M"},
+    3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1, image: "boots.jpg",size:"M"}}}}
 
 
 function loadlocal(){
@@ -145,7 +145,7 @@ function product_add_button(store_id,item_id,store_cart_div){
 document.addEventListener("DOMContentLoaded", function() {
     loadproducts(0,"zara_products");
     loadproducts(1,"northface_products");
-    loadproducts(2,"h&m_products");
+    loadproducts(2,"hm_products");
 });
 
 
@@ -393,8 +393,6 @@ function loadzara(){
     displayTotal("zara_total");
     loadproducts(0,"zara_products");
     loadCartItems("zara_cart");
-
-
 }
 
 function spec_cart(s,cart_div){
