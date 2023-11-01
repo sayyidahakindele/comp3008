@@ -37,7 +37,7 @@ function loadlocal(){
     }
 }
 
-
+loadlocal();
 
 
 document.addEventListener("DOMContentLoaded", function () {
