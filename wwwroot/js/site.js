@@ -4,7 +4,11 @@
 // Write your JavaScript code.
 
 let user = 0
-
+let pastOrders = {
+    0: [],
+    1: [],
+    2: []
+};
 
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
@@ -339,6 +343,8 @@ function loadCartItems(cart_div) {
     for (const {id, rating} of ratings) {
         showRating(rating, id);
     }
+
+    displayTotal("totall")
 }
 
 function SearchCart() {
@@ -789,3 +795,17 @@ function clearAllDataAndRefresh() {
     // Refreshing the page
     window.location.reload();
   }
+
+  function checkOut(){
+    alert("Order Succesfull. Thank You!")
+    const order = document.getElementById("cart-section").innerHTML
+    for (const key in pastOrders) {
+        if (key == user) {
+          console.log(`Found key: ${key}`);
+          pastOrders[key].push(order);
+          break; // Exit the loop once the target key is found
+        }
+    }
+    console.log(pastOrders)
+    document.getElementById("cart-section").innerHTML = ""
+}
