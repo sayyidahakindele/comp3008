@@ -225,6 +225,13 @@
 </script> -->
 
 <script>
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'visible') {
+        location.reload();
+    }
+});
+
+
 document.addEventListener("DOMContentLoaded", function() {
     
     loadCartItems("cart-section");
