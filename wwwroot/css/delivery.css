@@ -75,7 +75,7 @@ body {
 
 #noResultsMessage {
     white-space: nowrap;   
-    margin-left: 100px;
+    margin-left: 280px;
     margin-top: 150px;
 }
 
@@ -139,6 +139,14 @@ body {
 .budget-input {
     margin-top: 30px;
     margin-left: 20px;
+}
+
+.budget {
+    width: 10px; /* Adjust this value as needed to set the desired length of the input field */
+}
+input#budget {
+    width: 160px;
+    height: 35px;
 }
 
 .main-content {
