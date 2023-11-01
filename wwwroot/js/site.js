@@ -596,10 +596,12 @@ function updateamount(i,amount_id){
                 console.log("its zero");
                 delete_item(i);
                 loadCartItems("cart-section");
+                break;
             }
             else{
                 console.log("its "+document.getElementById(amount_id).value);
                 usersT[user]["cart"][item][2]=document.getElementById(amount_id).value;
+                break;
             }
         }
     }
