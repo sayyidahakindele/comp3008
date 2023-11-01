@@ -88,3 +88,12 @@ body {
 button {
   cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
 }
+
+#del {
+  /* margin-left: 300px; */
+  /* margin-bottom: 100px; */
+  /* margin: 0;  Resetting the margin for these specific buttons */
+  /* margin-right: 300px; */
+  margin-left: 30px;
+  margin-top: -20px;
+}

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "b7pmzYK7HxKQzRJLpjrMiOEeqO0Dt3whG7s+kKmgCGY=",
+  "Hash": "TaEEZco7UIj1nw2zseiLqUqO/FTabSV+VNHeP9rcb1U=",
   "Source": "MyWebApp",
   "BasePath": "_content/MyWebApp",
   "Mode": "Default",
@@ -83,6 +83,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/boots.jpg"
+    },
+    {
+      "Identity": "/workspaces/comp3008/wwwroot/boxer.jpeg",
+      "SourceId": "MyWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "/workspaces/comp3008/wwwroot/",
+      "BasePath": "_content/MyWebApp",
+      "RelativePath": "boxer.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/boxer.jpeg"
     },
     {
       "Identity": "/workspaces/comp3008/wwwroot/Canada_Goose_logo.png",

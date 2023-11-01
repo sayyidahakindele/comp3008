@@ -120,7 +120,7 @@ function loadproducts(store, product_div) {
                     <p>${item.item_name}</p> 
                     <p>Store: ${st.name}; </p> 
                     <p id="sizeS">Size: ${item.size}</p> 
-                    <p id="PriceS">Price: $${item.amount}</p> 
+                    <p id="PriceS">Price: $${item.price}</p> 
                     <button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button>
                     </div>
                    </div>`;
@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function toggleActive(buttonId) {
     const inStoreContent = document.getElementById('inStoreContent');
-    const cartSection = document.getElementById('cart-section');
+    const cartSection = document.getElementById('csection');
 
     if (buttonId === 'shoppingListButton') {
         inStoreContent.style.display = 'block';
@@ -324,7 +324,7 @@ function loadCartItems(cart_div) {
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${usersT[user]["cart"][product][2]}</p>
                                 <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${usersT[user]["cart"][product][2]} min="-1" max="100" onchange=updateamount([${st},${i},${usersT[user]["cart"][product][2]}],"${st},${i},amount")>
-                                <button id="${st},${i},button"  onclick="put_instore([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
+                                <button id="${st},${i},button"  onclick="put_instore([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To In Store</button><br></br>
                             </div>
                         </div>
                         </div>`;
@@ -333,7 +333,7 @@ function loadCartItems(cart_div) {
 
     document.getElementById(cart_div).innerHTML = result;
    
-    // Replace placeholders with star elements
+
     for (const {id, rating} of ratings) {
         showRating(rating, id);
     }
@@ -547,15 +547,17 @@ function load_instore(in_div){
                             <div id="${st},${i},del"> 
                                 <p>Name: ${item.item_name}</p> 
                                 <p>Store: ${shopsT[st]["name"]} </p>
-                                <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
+                                <span class="star-rating" id="${ratingId}" data-rating="${item.rating}">Rating: ${item.rating}</span> 
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${usersT[user]["cart"][product][2]}</p>
+                                </div>
+                                </div>
+                                <div id="del">
                                 <button id="${st},${i},del"  onclick="delete_item_instore([${st},${i},${usersT[user]["cart"][product][2]}])">delete</button>
-                                <button id="${st},${i},button"  onclick="put_indelivery([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
-                            </div>
-                        </div>
-                        </div>`;
+                                <button class=move id="${st},${i},button"  onclick="put_indelivery([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Delivery</button><br></br>
+                                </div>
+                                </div>`;
 
             // result += ` <div id="${st+","+i},st">  <p>"name: "${item.item_name}</p> <p>Store: ${shops[st]["name"]}; M</p> <p>Size: Large</p> <p>Price: $${item.price}</p><p>Amount: ${users[user]["cart"][product][2]}</p>`;
             // result += `<input id="${st},${i},check"  type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br>`;
@@ -569,16 +571,9 @@ function load_instore(in_div){
     
     document.getElementById(in_div).innerHTML = result;
 
-    // for (product in users[user]["cart"]){
-    //     if (users[user]["cart"][product][3]==true){
-    //         let st = users[user]["cart"][product][0];
-    //         let i = users[user]["cart"][product][1];
-    //         let item = shops[st]["catalog"][i];
-
-    //         console.log("\""+st+","+i+",check\"");
-    //         document.getElementById(`${"\""+st+","+i+",check\""}`).checked = true;
-    //     }
-    // }
+    for (const {id, rating} of ratings) {
+        showRating(rating, id);
+    }
 }
 
 
@@ -747,10 +742,18 @@ function SortAndFilterCart() {
             bValue = parseInt(b.querySelector('.star-rating').getAttribute('data-rating'));
             return sortBy === 'rating_high_low' ? bValue - aValue : aValue - bValue;
         } else if (['size', 'size_small_large', 'size_large_small'].includes(sortBy)) {
-            const sizeOrder = ["Small", "Medium", "Large"];
+            console.log("Size sorting activated");
+            const sizeOrder = ["S", "M", "L"];
             aValue = sizeOrder.indexOf(a.querySelector('p#size').innerText.split(': ')[1]);
             bValue = sizeOrder.indexOf(b.querySelector('p#size').innerText.split(': ')[1]);
+            console.log(aValue, bValue);  // debug line
             return sortBy === 'size_large_small' ? bValue - aValue : aValue - bValue;
+            
+        // } else if (['size', 'size_small_large', 'size_large_small'].includes(sortBy)) {
+        //     const sizeOrder = ["Small", "Medium", "Large"];
+        //     aValue = sizeOrder.indexOf(a.querySelector('p#size').innerText.split(': ')[1]);
+        //     bValue = sizeOrder.indexOf(b.querySelector('p#size').innerText.split(': ')[1]);
+        //     return sortBy === 'size_large_small' ? bValue - aValue : aValue - bValue;
         } else if (sortBy === 'price_low_high') {
             aValue = parseFloat(a.querySelector('p#Price').innerText.split(': $')[1]);
             bValue = parseFloat(b.querySelector('p#Price').innerText.split(': $')[1]);

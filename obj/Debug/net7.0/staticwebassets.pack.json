@@ -53,6 +53,10 @@
       "PackagePath": "staticwebassets/boots.jpg"
     },
     {
+      "Id": "/workspaces/comp3008/wwwroot/boxer.jpeg",
+      "PackagePath": "staticwebassets/boxer.jpeg"
+    },
+    {
       "Id": "/workspaces/comp3008/wwwroot/css/delivery.css",
       "PackagePath": "staticwebassets/css/delivery.css"
     },
