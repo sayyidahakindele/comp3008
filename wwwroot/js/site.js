@@ -78,7 +78,8 @@ function loadproducts(store, product_div) {
     }
 
     // Rest of your function...
-    let st = shops[store];
+    let string_shops = localStorage.getItem("shops");
+    let st = JSON.parse(string_shops)[store];
     let cat = st.catalog;
     let result = "";
 
@@ -173,16 +174,19 @@ function filterStores() {
 
 function addtocart(store_id,item_id){
 
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
     console.log("see me");
     let incart = false;
 
-   for (const key in users[user]["cart"]){
-        if (users[user]["cart"][key][1]==item_id){
+   for (const key in usersT[user]["cart"]){
+        if (usersT[user]["cart"][key][1]==item_id){
             incart=true;
 
             // console.log("before add");
             // console.log(users[user]["cart"]);
-            users[user]["cart"][key][2]=users[user]["cart"][key][2]+1;
+            usersT[user]["cart"][key][2]=usersT[user]["cart"][key][2]+1;
             console.log("after add");
             console.log(users[user]["cart"]);
             //updatestorecart()
@@ -192,19 +196,25 @@ function addtocart(store_id,item_id){
 
     if (incart==false){
         // addtostorecart();
-        let keys = Object.keys(users[user]["cart"]);
+        let keys = Object.keys(usersT[user]["cart"]);
         let newkey = keys;
         // console.log("before add");
         // console.log(users[user]["cart"]);
-        users[user]["cart"][keys.length]=[store_id,item_id,1,false]
+        usersT[user]["cart"][keys.length]=[store_id,item_id,1,false]
         console.log("after add");
-        console.log(users[user]["cart"]);
+        console.log(usersT[user]["cart"]);
         // console.log(keys.length);
     }  
 
+    localStorage.setItem("users", JSON.stringify(usersT));
+
+    let s = localStorage.getItem("shops");
+    let shopsT = JSON.parse(s);
+
     cartTotal();
-    console.log(shops[store_id]["name"]+"_cart");
-    spec_cart(store_id,shops[store_id]["name"]+"_cart");
+    // console.log(shops[store_id]["name"]+"_cart");
+    spec_cart(store_id,shopsT[store_id]["name"]+"_cart");
+    // console.log("added without error");
     loadCartItems("cart-section");
     load_instore("inStoreContent");
 
@@ -212,15 +222,21 @@ function addtocart(store_id,item_id){
 
 function cartTotal(){//sums up the price of cloths stored in the cart
     // console.log("runs");
-    let ct = users[user]["cart"];//local cart variable
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+    let ct = usersT[user]["cart"];//local cart variable
     let total = 0;//the total 
     // console.log(ct);
+
+    let s = localStorage.getItem("shops");
+    let shopsT = JSON.parse(s);
+
 
     // console.log(ct);
 
     for (key in ct){//loops over the cart
         // console.log(shops[ct[key][0]]["catalog"]);
-        total+=shops[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
+        total+=shopsT[ct[key][0]]["catalog"][ct[key][1]]["price"]*ct[key][2];
         // console.log("total: "+total);
     } 
     // console.log(total);
@@ -228,13 +244,13 @@ function cartTotal(){//sums up the price of cloths stored in the cart
 };
 
 
-console.log("before cart total");
+// console.log("before cart total");
 let to = cartTotal();
-console.log(to);
+// console.log(to);
 // cartTotal()
 
 function displayTotal(total_div){
-    console.log("testing");
+    // console.log("testing");
     let t = cartTotal();
     let result ="";
     result += `<p>Total: ${t}</p>`;
@@ -245,16 +261,22 @@ displayTotal("zara_total");
 
 
 function loadCartItems(cart_div) {
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+    let s = localStorage.getItem("shops");
+    let shopsT = JSON.parse(s);
+
     document.getElementById(cart_div).innerHTML = "";
     let result = "";
     const ratings = [];  // To store ratings and corresponding element IDs
 
-    for (const product in users[user]["cart"]) {
-        console.log (users[user]["cart"]);
-        if (!users[user]["cart"][product][3]) {
-            const st = users[user]["cart"][product][0];
-            const i = users[user]["cart"][product][1];
-            const item = shops[st]["catalog"][i];
+    for (const product in usersT[user]["cart"]) {
+        // console.log (users[user]["cart"]);
+        if (!usersT[user]["cart"][product][3]) {
+            const st = usersT[user]["cart"][product][0];
+            const i = usersT[user]["cart"][product][1];
+            const item = shopsT[st]["catalog"][i];
             const ratingId = `rating-${st}-${i}`;  // Unique ID for the rating span
             ratings.push({id: ratingId, rating: item.rating});  // Store rating info
 
@@ -263,13 +285,13 @@ function loadCartItems(cart_div) {
                         <div id="itembox">
                             <div id="${st},${i},del"> 
                                 <p>Name: ${item.item_name}</p> 
-                                <p>Store: ${shops[st]["name"]} </p>
+                                <p>Store: ${shopsT[st]["name"]} </p>
                                 <span class="star-rating" id="${ratingId}" data-rating="${item.rating}">Rating: ${item.rating}</span> 
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
-                                <p>Amount: ${users[user]["cart"][product][2]}</p>
-                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${users[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},amount")>
-                                <button id="${st},${i},button"  onclick="put_instore([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
+                                <p>Amount: ${usersT[user]["cart"][product][2]}</p>
+                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${usersT[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${usersT[user]["cart"][product][2]}],"${st},${i},amount")>
+                                <button id="${st},${i},button"  onclick="put_instore([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                             </div>
                         </div>
                         </div>`;
@@ -348,19 +370,25 @@ function loadzara(){
 }
 
 function spec_cart(s,cart_div){
-    console.log("reached")
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+    let s = localStorage.getItem("shops");
+    let shopsT = JSON.parse(s);
+
+    // console.log("reached")
     document.getElementById(cart_div).innerHTML = "";
     let result = ""
     result += "<br><h2>Cart</h2>";
-    console.log(users[user]["cart"]);
+    // console.log(users[user]["cart"]);
 
-    let ttemp = users[user]["cart"]
+    let ttemp = usersT[user]["cart"]
     for (item in ttemp){
-        console.log(ttemp[item])
+        // console.log(ttemp[item])
         if(ttemp[item][0] == s){
-            let xx = shops[s]["catalog"][ttemp[item][1]]
-            console.log(item[1])
-            console.log(xx)
+            let xx = shopsT[s]["catalog"][ttemp[item][1]]
+            // console.log(item[1])
+            // console.log(xx)
             result += ` <div> <p>"name: "${xx.item_name}</p> <p>Size: ${item.size}</p> <p>Price: $${xx.price}</p><p>Amount: ${xx["amount"]}</p> </div>`;
             result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
         }
@@ -378,14 +406,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //input is a list [store_id,item_id],amount
 function instoreCheck(li,check_id) {
+
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+    let s = localStorage.getItem("shops");
+    let shopsT = JSON.parse(s);
     
-    for (item in users[user]["cart"]){
-        if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
+    for (item in usersT[user]["cart"]){
+        if (usersT[user]["cart"][item][1]==li[1]&&usersT[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
             if (document.getElementById(check_id).checked){
-                users[user]["cart"][item][3]=true;
+                usersT[user]["cart"][item][3]=true;
             }
             else {
-                users[user]["cart"][item][3]=false;
+                usersT[user]["cart"][item][3]=false;
             }
             
             load_instore("inStoreContent");
