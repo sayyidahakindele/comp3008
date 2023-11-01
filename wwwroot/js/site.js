@@ -17,7 +17,7 @@ let users = {
 shops = {0:{name:"zara",address:"123 zara ave",catalog:{
     0:{item_name:"Black shirt",price:400,amount:5,in_store:false,store_id:0,rating:3, image: "Zara blackshirt.jpg", size:"L"},
     1:{item_name:"Black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5, image: "Zara blackjeans.jpg", size: "M"},
-    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, mage: "Zara blackshirt.jpg", size:"S"}}},
+    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, image: "Zara bluejeans.png", size:"S"}}},
 1:{name:"northFace",address:"123 northface ave",catalog:{
     0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4, size:"XS"},
     1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5,size:"L"},
@@ -110,12 +110,17 @@ function loadproducts(store, product_div) {
     Object.keys(cat).forEach(id => {
         let item = cat[id];
         //adds in the individual clothing items
-        result += `<img src="path/to/image" alt="Black Shirt" width="50"></img> 
-                   <div> <p>${item.item_name}</p> <p>Store: ${st.name}; </p> 
-                   <p>Size: ${item.size}</p> 
-                   <p>Price: $${item.amount}</p> 
+        result += `<div class="item-container">
+                    <img class="item-image" src="${item.image}" alt="${item.item_name}" style="width: 159px; height: 190px;">
+                    <div>
+                    <p>${item.item_name}</p> 
+                    <p>Store: ${st.name}; </p> 
+                    <p id="sizeS">Size: ${item.size}</p> 
+                    <p id="PriceS">Price: $${item.amount}</p> 
+                    <button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button>
+                    </div>
                    </div>`;
-        result += `<div><button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button></div>`;
+        // result += `<div><button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button></div>`;
         console.log(`product_add_button(${store},${id},${st["name"]+"_cart"})`);
     });
 
@@ -412,7 +417,13 @@ function spec_cart(s,cart_div){
             let xx = shopsT[s]["catalog"][ttemp[item][1]]
             // console.log(item[1])
             // console.log(xx)
-            result += ` <div> <p>"name: "${xx.item_name}</p> <p>Size: ${item.size}</p> <p>Price: $${xx.price}</p><p>Amount: ${xx["amount"]}</p> </div>`;
+            result += ` <div> 
+                        <img src="${item.image}" alt="${item.item_name}" style="margin-top: -20px; width: 159px; height: 190px;">
+                        <p>"Name: "${xx.item_name}</p> 
+                        <p id="size">Size: ${item.size}</p> 
+                        <p id="Price">Price: $${xx.price}</p>
+                        <p>Amount: ${xx["amount"]}</p> 
+                    </div>`;
             result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
         }
     }

@@ -3,40 +3,64 @@
 @{
     ViewData["Title"] = "Zara page";
 }
-<!-- <link rel="stylesheet" href="" asp-append-version="true" /> -->
+<link rel="stylesheet" href="css/delivery.css" asp-append-version="true" />
 
 <html>
 <head>
 <style>
-.myDiv {
-  border: 5px outset red;
-  background-color: lightblue;
-  text-align: center;
+#zara_general_body {
+  display: flex;
+  /* justify-content: center; Center children horizontally */
+  /* align-items: center; Center children vertically */
+  min-height: 100vh; /* Make sure the body takes at least the full height of the viewport */
 }
+
+#zara_products {
+  flex: 0 0 auto; /* Do not grow, do not shrink, be as wide as the content */
+  width: 800px; /* Set a specific width */
+  height: 750px; /* Set a specific height */
+  border: 2px solid black; /* Add a border for better visibility */
+  padding: 20px; /* Add some padding inside the box */
+  text-align: center; /* Center text */
+}
+
+#zara_cart_container {
+  margin-left: 20px; /* Space between products and cart */
+}
+
+#zara_cart, #zara_total {
+  border: 2px solid black; /* Border around the cart and total */
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Some padding inside the cart and total */
+}
+
 </style>
 
 </head>
 <body>
 
 <div id="zara_general_body">
-  <h2>Products</h2>
-  
-  <div id="zara_total">
-
-  </div>
-
   <div id="zara_products">
-
+    <h2>Products</h2>
+    <!-- Products go here -->
   </div>
 
-  <div id="zara_cart">
-
+  <div id="zara_cart_container">
+    <div id="zara_cart">
+      <h3>Cart</h3>
+      <!-- Cart goes here -->
+    </div>
+    
+    <div id="zara_total">
+      <h3>Total</h3>
+      <!-- Total goes here -->
+    </div>
   </div>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-    spec_cart(0,"zara_cart");;
+    spec_cart(0,"zara_cart");
 });
 </script>
 </body>
