@@ -1,0 +1,43 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Prada page";
+}
+<!-- <link rel="stylesheet" href="" asp-append-version="true" /> -->
+
+<html>
+<head>
+<style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+
+<div id="prada_general_body">
+  <h2>Products</h2>
+  
+  <div id="prada_total">
+
+  </div>
+
+  <div id="prada_products">
+
+  </div>
+
+  <div id="prada_cart">
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    spec_cart(0,"prada_cart");;
+});
+</script>
+</body>
+</html>

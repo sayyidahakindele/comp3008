@@ -1,0 +1,43 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Tommy Hilfiger page";
+}
+<!-- <link rel="stylesheet" href="" asp-append-version="true" /> -->
+
+<html>
+<head>
+<style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+
+<div id="th_general_body">
+  <h2>Products</h2>
+  
+  <div id="th_total">
+
+  </div>
+
+  <div id="th_products">
+
+  </div>
+
+  <div id="th_cart">
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    spec_cart(0,"th_cart");;
+});
+</script>
+</body>
+</html>

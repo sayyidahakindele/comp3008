@@ -1,0 +1,43 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Louis Vuitton page";
+}
+<!-- <link rel="stylesheet" href="" asp-append-version="true" /> -->
+
+<html>
+<head>
+<style>
+.myDiv {
+  border: 5px outset red;
+  background-color: lightblue;
+  text-align: center;
+}
+</style>
+
+</head>
+<body>
+
+<div id="Lv_general_body">
+  <h2>Products</h2>
+  
+  <div id="lv_total">
+
+  </div>
+
+  <div id="lv_products">
+
+  </div>
+
+  <div id="lv_cart">
+
+  </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    spec_cart(0,"lv_cart");;
+});
+</script>
+</body>
+</html>

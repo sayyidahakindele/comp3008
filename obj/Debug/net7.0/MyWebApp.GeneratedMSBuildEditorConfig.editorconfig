@@ -16,6 +16,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /workspaces/comp3008
 build_property._RazorSourceGeneratorDebug = 
 
+[/workspaces/comp3008/Pages/AE.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQUUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/comp3008/Pages/canadagoose.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvY2FuYWRhZ29vc2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/comp3008/Pages/Delivery.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvRGVsaXZlcnkuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -40,8 +48,16 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW4uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/comp3008/Pages/LouisVuitton.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG91aXNWdWl0dG9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/comp3008/Pages/northface.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvbm9ydGhmYWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/comp3008/Pages/prada.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvcHJhZGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspaces/comp3008/Pages/Privacy.cshtml]
@@ -54,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/workspaces/comp3008/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/workspaces/comp3008/Pages/TH.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvVEguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/workspaces/comp3008/Pages/zara.cshtml]
