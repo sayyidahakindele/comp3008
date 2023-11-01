@@ -33,12 +33,12 @@ body {
 #size {
   margin-top: -20px; 
 }
-/* .star-rating {
-  margin-top: -10px;
-  margin-left: 180px;
-  position: relative;
-  display: inline-block;
-} */
+
+.ps {
+  margin-top: -40px;  /* Adjust the top margin */
+  margin-left: 180px; /* Adjust the left margin */
+}
+
 .star-rating {
   transform: translateY(-40px);
   margin-left: 180px;
@@ -67,3 +67,24 @@ body {
   object-fit: cover; /* This will make sure the image covers the area without stretching */
 }
 
+.item-container {
+  display: flex; /* Aligns children (image and text) side by side */
+  align-items: center; /* Vertically centers the content */
+  margin-bottom: 20px; /* Adds some space between the items */
+}
+
+.item-image {
+  margin-right: 20px; /* Adds some space between the image and the text */
+}
+
+.myBtn{
+  margin-right: 180px;
+}
+
+.text-content {
+  flex-grow: 1; /* Takes up remaining space to ensure button is aligned to the right */
+}
+
+button {
+  cursor: pointer; /* Changes the cursor to a pointer when hovering over the button */
+}
