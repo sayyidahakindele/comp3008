@@ -214,14 +214,14 @@ function addtocart(store_id,item_id){
     let incart = false;
 
    for (const key in usersT[user]["cart"]){
-        if (usersT[user]["cart"][key][1]==item_id){
+        if (usersT[user]["cart"][key][1]==item_id && usersT[user]["cart"][key][0]==store_id){
             incart=true;
 
             // console.log("before add");
             // console.log(users[user]["cart"]);
             usersT[user]["cart"][key][2]=usersT[user]["cart"][key][2]+1;
             console.log("after add");
-            console.log(users[user]["cart"]);
+            console.log(usersT[user]["cart"]);
             //updatestorecart()
 
         };
@@ -235,6 +235,8 @@ function addtocart(store_id,item_id){
         // console.log(users[user]["cart"]);
         usersT[user]["cart"][keys.length]=[store_id,item_id,1,false]
         console.log("after add");
+        console.log("keys");
+        console.log(Object.keys(usersT[user]["cart"]));
         console.log(usersT[user]["cart"]);
         // console.log(keys.length);
     }  
