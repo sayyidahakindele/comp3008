@@ -37,10 +37,12 @@
 
 </div>
 
-<div id="sort-and-filter-section">
-        <label for="sortDropdown">Sort by:</label>
+
+<div class="progress-container">
+    <div id="sort-and-filter-section">
+        <label for="sortDropdown"></label>
         <select id="sortDropdown" onchange="SortAndFilterCart()">
-            <option value=""></option>
+            <option value="">Sort and Filter</option>
             <option value="name">Name</option>
             <option value="store">Store</option>
             <option value="price_low_high">Price (Low to High)</option>
@@ -51,11 +53,6 @@
             <option value="rating_high_low">Rating (High to Low)</option>
         </select>
     </div>
-
-<div class="progress-container">
-    <button id="filterButton"><img src="/filter.png" alt="Filter Icon">
-        <span>Filter and Sort</span>
-    </button>
     <div class="progress-bar">
         <div class="progress"></div>
     </div>
