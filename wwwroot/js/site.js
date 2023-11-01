@@ -41,6 +41,22 @@ function loadlocal(){
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Get the URL of the current page
+    const currentURL = window.location.href;
+
+    // Parse the URL to extract the user's name
+    const parts = currentURL.split('=');
+    const adminPart = parts[parts.length - 1];
+    console.log(adminPart);
+
+    //save the current user
+    for (const key in users) {
+        if (users[key].user_name === adminPart) {
+          user = key;
+        }
+    }
+    console.log(user);
+
     const budgetInput = document.getElementById("budget");
     const updateButton = document.getElementById("updateButton");
     const progressBar = document.querySelector(".progress");
