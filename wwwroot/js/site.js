@@ -22,12 +22,16 @@ shops = {0:{name:"zara",address:"123 zara ave",catalog:{
     0:{item_name:"Black shirt",price:40,amount:4,in_store:false,store_id:1,rating:4, image: "Zara blackshirt.jpg", size:"XS"},
     1:{item_name:"Black jeans",price:75,amount:3,in_store:false,store_id:1,rating:5, image: "Zara blackjeans.jpg", size:"L"},
     2:{item_name:"Blue jeans",price:501,amount:9,in_store:false,store_id:1,rating:2, image: "Zara bluejeans.png", size:"M"},
-    3:{item_name:"Boxer",price:2,amount:45,in_store:false,store_id:1,rating:2}}},
+    3:{item_name:"Boxer",price:2,amount:45,in_store:false,store_id:1,rating:2, image: "boxer.jpeg", size:"M"}}},
 2:{name:"h&m",address:"123 H&M ave",catalog:{
     0:{item_name:"Black shirt",price:10,amount:5,in_store:false,store_id:2,rating:5,image: "Zara blackshirt.jpg", size:"XL"},
     1:{item_name:"Black jeans",price:10,amount:2,in_store:false,store_id:2,rating:4,image: "Zara blackjeans.jpg", size:"XS"},
     2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,image: "Zara bluejeans.png",size:"M"},
-    3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1, image: "boots.jpg",size:"M"}}}}
+    3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1, image: "boots.jpg",size:"M"}}},
+3:{name:"zara",address:"123 zara ave",catalog:{
+    0:{item_name:"Black shirt",price:400,amount:5,in_store:false,store_id:0,rating:3, image: "Zara blackshirt.jpg", size:"L"},
+    1:{item_name:"Black jeans",price:700,amount:2,in_store:false,store_id:0,rating:5, image: "Zara blackjeans.jpg", size: "M"},
+    2:{item_name:"Blue jeans",price:500,amount:10,in_store:false,store_id:0,rating:3, image: "Zara bluejeans.png", size:"S"}}}}
 
 
 function loadlocal(){
@@ -146,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function() {
     loadproducts(0,"zara_products");
     loadproducts(1,"northface_products");
     loadproducts(2,"hm_products");
+    loadproducts(3,"ftg_products");
 });
 
 

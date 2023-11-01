@@ -1,124 +1,78 @@
 @page
 @model IndexModel
 @{
-    ViewData["Title"] = "FTG page";
+    ViewData["Title"] = "For The Gang [FTG]";
+}
+<link rel="stylesheet" href="css/delivery.css" asp-append-version="true" />
+
+<html>
+<head>
+<style>
+#ftg_general_body {
+  display: flex;
+  /* justify-content: center; Center children horizontally */
+  /* align-items: center; Center children vertically */
+  min-height: 100vh; /* Make sure the body takes at least the full height of the viewport */
 }
 
-<!-- Styles for your page -->
-<style>
-    .myDiv {
-        border: 5px outset red;
-        background-color: lightblue;
-        text-align: center;
-    }
+#ftg_products {
+  flex: 0 0 auto; /* Do not grow, do not shrink, be as wide as the content */
+  width: 600px; /* Set a specific width */
+  height: 750px; /* Set a specific height */
+  border: 2px solid black; /* Add a border for better visibility */
+  padding: 20px; /* Add some padding inside the box */
+  text-align: center; /* Center text */
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
+}
 
-    .product {
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin: 10px;
-        display: inline-block;
-    }
+
+#ftg_cart_container {
+  margin-left: 40px; /* Space between products and cart */
+  width: 600px; /* Set a specific width */
+  height: 750px;
+  /* overflow-y: auto; */
+}
+
+#ftg_cart {
+  border: 2px solid black; /* Border around the cart and total */
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Some padding inside the cart and total */
+  width: 600px; /* Set a specific width */
+  height: 685px;
+  overflow-y: auto;
+}
+
+#ftg_total {
+  border: 2px solid black; /* Border around the cart and total */
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Some padding inside the cart and total */
+}
 </style>
+</head>
+<body>
 
-<!-- Main Content -->
 <div id="ftg_general_body">
+  <div id="ftg_products">
     <h2>Products</h2>
-    
-    <div id="ftg_products">
-        <!-- Sample products rendered here -->
-        <div class="product" data-product-id="1">
-            <img src="path/to/image1.jpg" alt="Product 1">
-            <p>Product Name 1</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
+  </div>
+  
+  <div id="ftg_cart_container">
+    <div id="ftg_cart">
+      <h3>Cart</h3>
+  </div>
 
-        <div class="product" data-product-id="2">
-            <img src="path/to/image2.jpg" alt="Product 2">
-            <p>Product Name 2</p>
-            <button class="add-to-cart">Add to Cart</button>
-        </div>
-        <!-- ... other products ... -->
-    </div>
-
-    <!-- Cart display -->
-    <h2>Cart</h2>
-    <ul id="cart-items-list">
-        <!-- Cart items will be populated here -->
-    </ul>
+  <div id="ftg_total">
+    <h3>Total</h3>
+  </div>
+</div>
 </div>
 
-<!-- Script to handle cart operations -->
+</body>
+
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-
-        loadCartItems(); 
-
-        // Handle the "Add to Cart" button click
-        const buttons = document.querySelectorAll('.add-to-cart');
-        for (let btn of buttons) {
-            btn.addEventListener('click', function() {
-                const productId = this.closest('.product').getAttribute('data-product-id');
-                addToCart(productId);
-            });
-        }
-    });
-
-    function loadCartItems() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.forEach(productId => {
-        displayCartItem(productId);
-    });
-}
-
-    function addToCart(productId) {
-        // In a real scenario, you'd likely make an AJAX call here to add the product to the server-side cart.
-        // But for the sake of simplicity, let's just add it to the cart on the page.
-        
-
-        const cartList = document.getElementById('cart-items-list');
-        const listItem = document.createElement('li');
-        listItem.textContent = "Product ID: " + productId + " has been added to the cart.";
-        cartList.appendChild(listItem);
-        
-
-         // Save cart to localStorage
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(productId); // Here you can add more product details if needed
-        localStorage.setItem('cart', JSON.stringify(cart));
-
-        // Dispatch a custom event to notify other parts of our app
-        window.dispatchEvent(new Event('cartUpdated'));
-    }
-
-    function displayCartItem(productId) {
-    const cartList = document.getElementById('cart-items-list');
-    const listItem = document.createElement('li');
-    listItem.setAttribute('data-product-id', productId); // set attribute for easy removal
-    listItem.textContent = "Product ID: " + productId;
-    
-    const removeButton = document.createElement('button');
-    removeButton.textContent = "Remove";
-    removeButton.addEventListener('click', function() {
-        removeFromCart(productId);
-    });
-    listItem.appendChild(removeButton);
-
-    cartList.appendChild(listItem);
-}
-
-function removeFromCart(productId) {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const index = cart.indexOf(productId);
-    if (index > -1) {
-        cart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }
-
-    const cartList = document.getElementById('cart-items-list');
-    const listItem = cartList.querySelector(`li[data-product-id="${productId}"]`);
-    if (listItem) {
-        listItem.remove();
-    }
-}
-
+document.addEventListener("DOMContentLoaded", function() {
+    spec_cart(3,"ftg_cart");;
+});
 </script>
+
+</html>
