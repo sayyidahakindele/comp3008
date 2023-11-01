@@ -86,7 +86,7 @@ function loadproducts(store, product_div) {
                    <p>Size: ${item.size}</p> 
                    <p>Price: $${item.amount}</p> 
                    </div>`;
-        result += `<div><button type="button" id="myBtn" onclick="product_add_button(${store},${id},${st["name"]+"_cart"})">+</button></div>`;
+        result += `<div><button type="button" id="myBtn" onclick="addtocart(${store},${id})">+</button></div>`;
         console.log(`product_add_button(${store},${id},${st["name"]+"_cart"})`);
     });
 
@@ -99,17 +99,19 @@ function loadproducts(store, product_div) {
 }
 
 
-
 function product_add_button(store_id,item_id,store_cart_div){
-    spec_cart(store_id,store_cart_div);
     addtocart(store_id,item_id);
+    spec_cart(store_id,store_cart_div);
+    // product_add_button(${store},${id},\"${st["name"]+"_cart\""})
+    
+
 
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     loadproducts(0,"zara_products");
     loadproducts(1,"northface_products");
-    loadproducts(2,"hm_products");
+    loadproducts(2,"h&m_products");
 });
 
 
@@ -196,13 +198,15 @@ function addtocart(store_id,item_id){
     }  
 
     cartTotal();
+    console.log(shops[store_id]["name"]+"_cart");
+    spec_cart(store_id,shops[store_id]["name"]+"_cart");
     loadCartItems("cart-section");
     load_instore("inStoreContent");
 
 };
 
 function cartTotal(){//sums up the price of cloths stored in the cart
-    console.log("runs");
+    // console.log("runs");
     let ct = users[user]["cart"];//local cart variable
     let total = 0;//the total 
     // console.log(ct);
@@ -241,6 +245,7 @@ function loadCartItems(cart_div) {
     const ratings = [];  // To store ratings and corresponding element IDs
 
     for (const product in users[user]["cart"]) {
+        console.log (users[user]["cart"]);
         if (!users[user]["cart"][product][3]) {
             const st = users[user]["cart"][product][0];
             const i = users[user]["cart"][product][1];
@@ -438,7 +443,7 @@ function load_instore(in_div){
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${users[user]["cart"][product][2]}</p>
-                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${users[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},amount")>
+                                <button id="${st},${i},del"  onclick="delete_item_instore([${st},${i},${users[user]["cart"][product][2]}])">delete</button>
                                 <button id="${st},${i},button"  onclick="put_indelivery([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                             </div>
                         </div>
@@ -448,6 +453,8 @@ function load_instore(in_div){
             // result += `<input id="${st},${i},check"  type="checkbox" onchange=instoreCheck([${st},${i},${users[user]["cart"][product][2]}],${"\""+st+","+i+",check\""})><label>in store</label><br></br>`;
             // result += `<button id = "${st},${i},button"  onclick=put_indelivery([${st},${i},${users[user]["cart"][product][2]}],"${st+","+i},st")>To Instore</button><br></br></div>`;
         }
+
+        // <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${users[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${users[user]["cart"][product][2]}],"${st},${i},amount")></label>
     }
 
     // console.log("instore loaded");
@@ -479,7 +486,7 @@ function updateamount(i,amount_id){
         if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
             // console.log(document.getElementById(amount_id).value);
             if (document.getElementById(amount_id).value==0){
-                delete_item(i,);
+                delete_item(i);
                 loadCartItems("cart-section");
             }
             else{
@@ -494,24 +501,76 @@ function updateamount(i,amount_id){
 
 }
 
-function delete_item_instore(i){
+function deleteAndSlide(object, keyToDelete) {
+    if (object.hasOwnProperty(keyToDelete)) {
+      delete object[keyToDelete];
+      
+      let previousValue = undefined;
+      for (const key in object) {
+        const temp = object[key];
+        object[key] = previousValue;
+        previousValue = temp;
+      }
+    }
+  }
 
-    let found = true;
+function delete_item(i){
+
+    let found = undefined;
+    
     for (item in users[user]["cart"]){
         console.log(item);
-        if (found){
-            users[user]["cart"][item]=users[user]["cart"][item+1];
-        }
-        else if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
-            found = true;
+        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+            found = users[user]["cart"][item][0];
+            break;
         }
     }
+
+    deleteAndSlide(item in users[user]["cart"],found);
 
     delete users[user]["cart"][users[user]["cart"].length-1];
     // console.log(users[user]["cart"]);
 
 
 
+}
+
+function delete_item_instore(i){
+
+    let found = undefined;
+    
+    for (item in users[user]["cart"]){
+        console.log(item);
+        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+            found = users[user]["cart"][item][0];
+            break;
+        }
+    }
+
+    deleteAndSlide(item in users[user]["cart"],found);
+
+    delete users[user]["cart"][users[user]["cart"].length-1];
+
+    loadCartItems("cart-section");
+    load_instore("inStoreContent");
+}
+
+function delete_item_store(i,cart_div){
+
+    let found = undefined;
+    
+    for (item in users[user]["cart"]){
+        console.log(item);
+        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+            found = users[user]["cart"][item][0];
+            break;
+        }
+    }
+
+    deleteAndSlide(item in users[user]["cart"],found);
+
+    delete users[user]["cart"][users[user]["cart"].length-1];
+    spec_cart(i[0],cart_div)
 }
 
 
