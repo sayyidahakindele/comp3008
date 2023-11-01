@@ -27,7 +27,7 @@ public class LoginModel : PageModel
     {
         if(IsValidUser(Username, Password))
         {
-            return RedirectToPage("/Delivery");
+            return RedirectToPage("/Delivery",Username);
         }
         else
         {
@@ -39,6 +39,6 @@ public class LoginModel : PageModel
     private bool IsValidUser(string username, string password)
     {
         // Placeholder: Replace with your actual authentication logic
-        return username == "admin" && password == "password";
+        return (username == "admin" && password == "password") || (username == "mike" && password == "mike123") || (username == "ella" && password == "ella123") || (username == "jack" && password == "jack123");
     }
 }
