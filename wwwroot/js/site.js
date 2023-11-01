@@ -436,45 +436,68 @@ function instoreCheck(li,check_id) {
 }
 
 function put_instore(li,item_div_id){
-    console.log("in cart rann");
-    for (item in users[user]["cart"]){
-        if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+
+
+    console.log(usersT[user]["cart"])
+    for (item in usersT[user]["cart"]){
+        if (usersT[user]["cart"][item][1]==li[1]&&usersT[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
             
-            users[user]["cart"][item][3]=true;
-            let temp = document.getElementById(item_div_id);
+            usersT[user]["cart"][item][3]=true;
+            // let temp = document.getElementById(item_div_id);
             // temp.remove;
 
+            localStorage.setItem("users",JSON.stringify(usersT));
             load_instore("inStoreContent");
             loadCartItems("cart-section");
+            break;
         }
     }
+    console.log(usersT[user]["cart"])
+    
 }
 
 function put_indelivery(li,item_div_id){
-    for (item in users[user]["cart"]){
-        if (users[user]["cart"][item][1]==li[1]&&users[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+    console.log(usersT[user]["cart"])
+    for (item in usersT[user]["cart"]){
+        if (usersT[user]["cart"][item][1]==li[1]&&usersT[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
             
-            users[user]["cart"][item][3]=false;
-            let temp = document.getElementById(item_div_id);
+            usersT[user]["cart"][item][3]=false;
+            // let temp = document.getElementById(item_div_id);
             // temp.remove;
+            localStorage.setItem("users",JSON.stringify(usersT));
             load_instore("inStoreContent");
             loadCartItems("cart-section");
+            break;
                 
         }
     }
+
+    console.log(usersT[user]["cart"])
 }
 
 function load_instore(in_div){
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+    let st = localStorage.getItem("shops");
+    let shopsT = JSON.parse(st);
+
     // console.log("instore started loading");
     document.getElementById(in_div).innerHTML = "";
     let result = "";
     const ratings = [];  // To store ratings and corresponding element IDs
 
-    for (product in users[user]["cart"]){
-        if (users[user]["cart"][product][3]==true){
-            let st = users[user]["cart"][product][0];
-            let i = users[user]["cart"][product][1];
-            let item = shops[st]["catalog"][i];
+    for (product in usersT[user]["cart"]){
+        if (usersT[user]["cart"][product][3]==true){
+            let st = usersT[user]["cart"][product][0];
+            let i = usersT[user]["cart"][product][1];
+            let item = shopsT[st]["catalog"][i];
             const ratingId = `rating-${st}-${i}`;  // Unique ID for the rating span
             ratings.push({id: ratingId, rating: item.rating});  // Store rating info
 
@@ -483,13 +506,13 @@ function load_instore(in_div){
                         <div id="itembox">
                             <div id="${st},${i},del"> 
                                 <p>Name: ${item.item_name}</p> 
-                                <p>Store: ${shops[st]["name"]} </p>
+                                <p>Store: ${shopsT[st]["name"]} </p>
                                 <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
-                                <p>Amount: ${users[user]["cart"][product][2]}</p>
-                                <button id="${st},${i},del"  onclick="delete_item_instore([${st},${i},${users[user]["cart"][product][2]}])">delete</button>
-                                <button id="${st},${i},button"  onclick="put_indelivery([${st},${i},${users[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
+                                <p>Amount: ${usersT[user]["cart"][product][2]}</p>
+                                <button id="${st},${i},del"  onclick="delete_item_instore([${st},${i},${usersT[user]["cart"][product][2]}])">delete</button>
+                                <button id="${st},${i},button"  onclick="put_indelivery([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                             </div>
                         </div>
                         </div>`;
