@@ -29,6 +29,10 @@ shops = {0:{name:"zara",address:"123 zara ave",catalog:{
     2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,size:"M"},
     3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
 
+localStorage.setItem("users", JSON.stringify(users));
+localStorage.setItem("shops", JSON.stringify(shops));
+
+
 document.addEventListener("DOMContentLoaded", function () {
     const budgetInput = document.getElementById("budget");
     const updateButton = document.getElementById("updateButton");
