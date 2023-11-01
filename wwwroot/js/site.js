@@ -373,8 +373,8 @@ function spec_cart(s,cart_div){
     let t = localStorage.getItem("users");
     let usersT = JSON.parse(t);
 
-    let s = localStorage.getItem("shops");
-    let shopsT = JSON.parse(s);
+    let st = localStorage.getItem("shops");
+    let shopsT = JSON.parse(st);
 
     // console.log("reached")
     document.getElementById(cart_div).innerHTML = "";
@@ -410,8 +410,6 @@ function instoreCheck(li,check_id) {
     let t = localStorage.getItem("users");
     let usersT = JSON.parse(t);
 
-    let s = localStorage.getItem("shops");
-    let shopsT = JSON.parse(s);
     
     for (item in usersT[user]["cart"]){
         if (usersT[user]["cart"][item][1]==li[1]&&usersT[user]["cart"][item][0]==li[0]){//checks the store id and item id of the item in order to make sure its the right item
