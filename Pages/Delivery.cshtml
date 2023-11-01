@@ -37,6 +37,23 @@
 
 </div>
 
+<div id="sort-and-filter-section">
+        <label for="sortDropdown">Sort by:</label>
+        <select id="sortDropdown" onchange="SortAndFilterCart()">
+            <option value="name">Name</option>
+            <option value="price">Price</option>
+            <option value="store">Store</option>
+            <option value="rating">Rating</option>
+            <option value="size">Size</option>
+            <option value="price_low_high">Price (Low to High)</option>
+            <option value="price_high_low">Price (High to Low)</option>
+            <option value="size_small_large">Size (Small to Large)</option>
+            <option value="size_large_small">Size (Large to Small)</option>
+            <option value="rating_low_high">Rating (Low to High)</option>
+            <option value="rating_high_low">Rating (High to Low)</option>
+        </select>
+    </div>
+
 <div class="progress-container">
     <button id="filterButton"><img src="/filter.png" alt="Filter Icon">
         <span>Filter and Sort</span>

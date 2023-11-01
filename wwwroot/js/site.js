@@ -260,7 +260,7 @@ function loadCartItems(cart_div) {
                             <div id="${st},${i},del"> 
                                 <p>Name: ${item.item_name}</p> 
                                 <p>Store: ${shops[st]["name"]} </p>
-                                <span class="star-rating" id="${ratingId}">Rating: ${item.rating}</span> 
+                                <span class="star-rating" id="${ratingId}" data-rating="${item.rating}">Rating: ${item.rating}</span> 
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${users[user]["cart"][product][2]}</p>
@@ -284,31 +284,39 @@ function SearchCart() {
     const input = document.getElementById('searchInput');
     const filter = input.value.toUpperCase();
     const items = document.getElementsByClassName('flex-container');
-    const notFoundMessage = document.getElementById('not-found-message');
-    
+    const cartDiv = document.getElementById('cart-section');
+
     let itemsFound = false;
   
     for (let i = 0; i < items.length; i++) {
-      const item = items[i];
-      const itemNameElement = item.querySelector('p');
-      let itemName = "";
-  
-      if (itemNameElement) {
-        itemName = itemNameElement.innerText;
-      }
-  
-      if (itemName.toUpperCase().indexOf(filter) > -1) {
-        item.style.display = '';
-        itemsFound = true;
-      } else {
-        item.style.display = 'none';
-      }
+        const item = items[i];
+        const itemNameElement = item.querySelector('p');
+        let itemName = "";
+
+        if (itemNameElement) {
+            itemName = itemNameElement.innerText;
+        }
+
+        if (itemName.toUpperCase().indexOf(filter) > -1) {
+            item.style.display = '';
+            itemsFound = true;
+        } else {
+            item.style.display = 'none';
+        }
     }
-  
-    if (itemsFound) {
-      notFoundMessage.style.display = 'none';
-    } else {
-      notFoundMessage.style.display = '';
+
+    let notFoundDiv = cartDiv.querySelector(".not-found");
+
+    if (!itemsFound) {
+        if (!notFoundDiv) {
+            notFoundDiv = document.createElement("div");
+            notFoundDiv.classList.add("not-found");
+            cartDiv.appendChild(notFoundDiv);
+        }
+        notFoundDiv.innerHTML = "Item not found";
+        notFoundDiv.style.display = '';
+    } else if (notFoundDiv) {
+        notFoundDiv.style.display = 'none';
     }
 }
 
@@ -596,7 +604,55 @@ function delete_item_store(i,cart_div){
 }
 
 
+function SortAndFilterCart() {
+    const sortDropdown = document.getElementById('sortDropdown');
+    const sortBy = sortDropdown.value;
+    const itemsContainer = document.getElementById('cart-section');
 
+    if (!itemsContainer) {
+        console.error('The cart items container was not found.');
+        return;
+    }
 
+    let items = Array.from(document.getElementsByClassName('flex-container'));
 
-  
+    // Sorting the items based on the selected criteria
+    items.sort((a, b) => {
+        let aValue, bValue;
+
+        if (sortBy === 'name' || sortBy === 'store') {
+            aValue = a.querySelector(`div p:nth-child(${sortBy === 'name' ? 1 : 2})`).innerText.split(': ')[1];
+            bValue = b.querySelector(`div p:nth-child(${sortBy === 'name' ? 1 : 2})`).innerText.split(': ')[1];
+            return aValue.localeCompare(bValue);
+        } else if (['rating', 'rating_low_high', 'rating_high_low'].includes(sortBy)) {
+            aValue = parseInt(a.querySelector('.star-rating').getAttribute('data-rating'));
+            bValue = parseInt(b.querySelector('.star-rating').getAttribute('data-rating'));
+            return sortBy === 'rating_high_low' ? bValue - aValue : aValue - bValue;
+        } else if (['size', 'size_small_large', 'size_large_small'].includes(sortBy)) {
+            const sizeOrder = ["Small", "Medium", "Large"];
+            aValue = sizeOrder.indexOf(a.querySelector('p#size').innerText.split(': ')[1]);
+            bValue = sizeOrder.indexOf(b.querySelector('p#size').innerText.split(': ')[1]);
+            return sortBy === 'size_large_small' ? bValue - aValue : aValue - bValue;
+        } else if (sortBy === 'price_low_high') {
+            aValue = parseFloat(a.querySelector('p#Price').innerText.split(': $')[1]);
+            bValue = parseFloat(b.querySelector('p#Price').innerText.split(': $')[1]);
+            return aValue - bValue;
+        } else if (sortBy === 'price_high_low') {
+            aValue = parseFloat(a.querySelector('p#Price').innerText.split(': $')[1]);
+            bValue = parseFloat(b.querySelector('p#Price').innerText.split(': $')[1]);
+            return bValue - aValue;
+        } else {
+            // Default case, if none of the above conditions are met
+            return 0;
+        }
+    });
+
+    // Clearing the current items in the container
+    itemsContainer.innerHTML = '';
+
+    // Appending the sorted items back to the container
+    items.forEach(item => itemsContainer.appendChild(item));
+
+    // Now, apply the search filter
+    SearchCart();
+}
