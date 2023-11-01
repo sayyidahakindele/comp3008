@@ -5,6 +5,7 @@
 
 let user = 0
 
+
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
 let users = {
@@ -516,40 +517,55 @@ function deleteAndSlide(object, keyToDelete) {
 
 function delete_item(i){
 
-    let found = undefined;
+    obj = {};
+    count=0;
     
     for (item in users[user]["cart"]){
-        console.log(item);
-        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
-            found = users[user]["cart"][item][0];
-            break;
+        // console.log(item);
+        // if (item==users[user]["cart"].length-1){
+        //     delete users[user]["carrt"].item;
+        //     break;
+        // }
+        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
+            obj[count]=users[user]["cart"][item];
+            count++;
+            users[user]["cart"][item]=users[user]["cart"][item+1];
         }
     }
 
-    deleteAndSlide(item in users[user]["cart"],found);
+    users[user]["cart"]=obj;
 
-    delete users[user]["cart"][users[user]["cart"].length-1];
+    console.log(users[user]["cart"]);
     // console.log(users[user]["cart"]);
-
-
 
 }
 
 function delete_item_instore(i){
 
-    let found = undefined;
+    // let found = false;
+    obj = {};
+    count=0;
     
     for (item in users[user]["cart"]){
-        console.log(item);
-        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
-            found = users[user]["cart"][item][0];
-            break;
+        // console.log(item);
+        // if (item==users[user]["cart"].length-1){
+        //     delete users[user]["carrt"].item;
+        //     break;
+        // }
+        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
+            obj[count]=users[user]["cart"][item];
+            count++;
+            users[user]["cart"][item]=users[user]["cart"][item+1];
         }
     }
 
-    deleteAndSlide(item in users[user]["cart"],found);
+    users[user]["cart"]=obj;
 
-    delete users[user]["cart"][users[user]["cart"].length-1];
+    console.log(users[user]["cart"]);
+    // console.log(found);
+    // deleteAndSlide(users[user]["cart"],found);
+
+    // delete users[user]["cart"][users[user]["cart"].length-1];
 
     loadCartItems("cart-section");
     load_instore("inStoreContent");
@@ -557,21 +573,28 @@ function delete_item_instore(i){
 
 function delete_item_store(i,cart_div){
 
-    let found = undefined;
+    obj = {};
+    count=0;
     
     for (item in users[user]["cart"]){
-        console.log(item);
-        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
-            found = users[user]["cart"][item][0];
-            break;
+        // console.log(item);
+        // if (item==users[user]["cart"].length-1){
+        //     delete users[user]["carrt"].item;
+        //     break;
+        // }
+        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
+            obj[count]=users[user]["cart"][item];
+            count++;
+            users[user]["cart"][item]=users[user]["cart"][item+1];
         }
     }
 
-    deleteAndSlide(item in users[user]["cart"],found);
+    users[user]["cart"]=obj;
 
-    delete users[user]["cart"][users[user]["cart"].length-1];
+    console.log(users[user]["cart"]);
     spec_cart(i[0],cart_div)
 }
+
 
 
 
