@@ -17,23 +17,36 @@
 
 #zara_products {
   flex: 0 0 auto; /* Do not grow, do not shrink, be as wide as the content */
-  width: 800px; /* Set a specific width */
+  width: 600px; /* Set a specific width */
   height: 750px; /* Set a specific height */
   border: 2px solid black; /* Add a border for better visibility */
   padding: 20px; /* Add some padding inside the box */
   text-align: center; /* Center text */
+  overflow-y: auto; /* Add vertical scrollbar if content overflows */
 }
+
 
 #zara_cart_container {
-  margin-left: 20px; /* Space between products and cart */
+  margin-left: 40px; /* Space between products and cart */
+  width: 600px; /* Set a specific width */
+  height: 750px;
+  /* overflow-y: auto; */
 }
 
-#zara_cart, #zara_total {
+#zara_cart {
+  border: 2px solid black; /* Border around the cart and total */
+  text-align: center; /* Center text horizontally */
+  padding: 10px; /* Some padding inside the cart and total */
+  width: 600px; /* Set a specific width */
+  height: 685px;
+  overflow-y: auto;
+}
+
+#zara_total {
   border: 2px solid black; /* Border around the cart and total */
   text-align: center; /* Center text horizontally */
   padding: 10px; /* Some padding inside the cart and total */
 }
-
 </style>
 
 </head>

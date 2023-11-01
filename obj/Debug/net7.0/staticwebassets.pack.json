@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets/Zara blackshirt.jpg"
     },
     {
+      "Id": "/workspaces/comp3008/wwwroot/Zara bluejeans.png",
+      "PackagePath": "staticwebassets/Zara bluejeans.png"
+    },
+    {
       "Id": "/workspaces/comp3008/wwwroot/Zara_logo.png",
       "PackagePath": "staticwebassets/Zara_logo.png"
     },

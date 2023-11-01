@@ -417,14 +417,17 @@ function spec_cart(s,cart_div){
             let xx = shopsT[s]["catalog"][ttemp[item][1]]
             // console.log(item[1])
             // console.log(xx)
-            result += ` <div> 
-                        <img src="${item.image}" alt="${item.item_name}" style="margin-top: -20px; width: 159px; height: 190px;">
-                        <p>"Name: "${xx.item_name}</p> 
-                        <p id="size">Size: ${item.size}</p> 
-                        <p id="Price">Price: $${xx.price}</p>
+            result += ` <div class="item-container"> 
+                        <img class="item-image" src="${xx.image}" alt="${xx.item_name}" style="margin-top: -20px; width: 159px; height: 190px;">
+                        <div>
+                        <p>Name: ${xx.item_name}</p> 
+                        <p id="sizeS">Size: ${xx.size}</p> 
+                        <p id="PriceS">Price: $${xx.price}</p>
                         <p>Amount: ${xx["amount"]}</p> 
+                        </div>
+                        <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>
                     </div>`;
-            result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
+            // result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
         }
     }
 
