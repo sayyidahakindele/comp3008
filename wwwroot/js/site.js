@@ -29,8 +29,15 @@ shops = {0:{name:"zara",address:"123 zara ave",catalog:{
     2:{item_name:"Blue jeans",price:50,amount:10,in_store:false,store_id:2,rating:4,size:"M"},
     3:{item_name:"Boots",price:80,amount:6,in_store:false,store_id:2,rating:1}}}}
 
-localStorage.setItem("users", JSON.stringify(users));
-localStorage.setItem("shops", JSON.stringify(shops));
+
+function loadlocal(){
+    if (localStorage.getItem("shops")==null){
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("shops", JSON.stringify(shops));
+    }
+}
+
+
 
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -290,7 +297,7 @@ function loadCartItems(cart_div) {
                                 <p id="size">Size: ${item.size}</p> 
                                 <p id="Price">Price: $${item.price}</p>
                                 <p>Amount: ${usersT[user]["cart"][product][2]}</p>
-                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${usersT[user]["cart"][product][2]} min="0" max="100" onchange=updateamount([${st},${i},${usersT[user]["cart"][product][2]}],"${st},${i},amount")>
+                                <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${usersT[user]["cart"][product][2]} min="-1" max="100" onchange=updateamount([${st},${i},${usersT[user]["cart"][product][2]}],"${st},${i},amount")>
                                 <button id="${st},${i},button"  onclick="put_instore([${st},${i},${usersT[user]["cart"][product][2]}],'${st},${i},del')">To Instore</button><br></br>
                             </div>
                         </div>
@@ -549,19 +556,28 @@ document.addEventListener("click", function () {
 });
 
 function updateamount(i,amount_id){
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
+
     console.log("testers fa");
-    for (item in users[user]["cart"]){
-        if (users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1]){
+    for (item in usersT[user]["cart"]){
+        if (usersT[user]["cart"][item][0]==i[0] && usersT[user]["cart"][item][1]==i[1]){
             // console.log(document.getElementById(amount_id).value);
             if (document.getElementById(amount_id).value==0){
+                console.log("its zero");
                 delete_item(i);
                 loadCartItems("cart-section");
             }
             else{
-                users[user]["cart"][item][2]=document.getElementById(amount_id).value;
+                console.log("its "+document.getElementById(amount_id).value);
+                usersT[user]["cart"][item][2]=document.getElementById(amount_id).value;
             }
         }
     }
+
+
+    localStorage.setItem("users",JSON.stringify(usersT));
     console.log("amount updated");
     // loadcartItems("cart-section");
     loadCartItems("cart-section");
@@ -583,52 +599,57 @@ function deleteAndSlide(object, keyToDelete) {
   }
 
 function delete_item(i){
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
 
     obj = {};
     count=0;
     
-    for (item in users[user]["cart"]){
+    for (item in usersT[user]["cart"]){
         // console.log(item);
         // if (item==users[user]["cart"].length-1){
         //     delete users[user]["carrt"].item;
         //     break;
         // }
-        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
-            obj[count]=users[user]["cart"][item];
+        if (!(usersT[user]["cart"][item][0]==i[0] && usersT[user]["cart"][item][1]==i[1])){
+            obj[count]=usersT[user]["cart"][item];
             count++;
-            users[user]["cart"][item]=users[user]["cart"][item+1];
+            usersT[user]["cart"][item]=usersT[user]["cart"][item+1];
         }
     }
 
-    users[user]["cart"]=obj;
+    usersT[user]["cart"]=obj;
+    localStorage.setItem("users",JSON.stringify(usersT));
+    loadCartItems("cart-section");
 
-    console.log(users[user]["cart"]);
+    console.log(usersT[user]["cart"]);
     // console.log(users[user]["cart"]);
 
 }
 
 function delete_item_instore(i){
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
 
-    // let found = false;
     obj = {};
     count=0;
     
-    for (item in users[user]["cart"]){
+    for (item in usersT[user]["cart"]){
         // console.log(item);
         // if (item==users[user]["cart"].length-1){
         //     delete users[user]["carrt"].item;
         //     break;
         // }
-        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
-            obj[count]=users[user]["cart"][item];
+        if (!(usersT[user]["cart"][item][0]==i[0] && usersT[user]["cart"][item][1]==i[1])){
+            obj[count]=usersT[user]["cart"][item];
             count++;
-            users[user]["cart"][item]=users[user]["cart"][item+1];
+            usersT[user]["cart"][item]=usersT[user]["cart"][item+1];
         }
     }
 
-    users[user]["cart"]=obj;
-
-    console.log(users[user]["cart"]);
+    usersT[user]["cart"]=obj;
+    localStorage.setItem("users",JSON.stringify(usersT));
+    console.log(usersT[user]["cart"]);
     // console.log(found);
     // deleteAndSlide(users[user]["cart"],found);
 
@@ -640,25 +661,29 @@ function delete_item_instore(i){
 
 function delete_item_store(i,cart_div){
 
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+
     obj = {};
     count=0;
     
-    for (item in users[user]["cart"]){
+    for (item in usersT[user]["cart"]){
         // console.log(item);
         // if (item==users[user]["cart"].length-1){
         //     delete users[user]["carrt"].item;
         //     break;
         // }
-        if (!(users[user]["cart"][item][0]==i[0] && users[user]["cart"][item][1]==i[1])){
-            obj[count]=users[user]["cart"][item];
+        if (!(usersT[user]["cart"][item][0]==i[0] && usersT[user]["cart"][item][1]==i[1])){
+            obj[count]=usersT[user]["cart"][item];
             count++;
-            users[user]["cart"][item]=users[user]["cart"][item+1];
+            usersT[user]["cart"][item]=usersT[user]["cart"][item+1];
         }
     }
 
-    users[user]["cart"]=obj;
+    usersT[user]["cart"]=obj;
+    localStorage.setItem("users",JSON.stringify(usersT));
 
-    console.log(users[user]["cart"]);
+    console.log(usersT[user]["cart"]);
     spec_cart(i[0],cart_div)
 }
 
