@@ -766,7 +766,7 @@ function SortAndFilterCart() {
             return sortBy === 'rating_high_low' ? bValue - aValue : aValue - bValue;
         } else if (['size', 'size_small_large', 'size_large_small'].includes(sortBy)) {
             console.log("Size sorting activated");
-            const sizeOrder = ["S", "M", "L"];
+            const sizeOrder = ["XS","S", "M", "L", "XL"];
             aValue = sizeOrder.indexOf(a.querySelector('p#size').innerText.split(': ')[1]);
             bValue = sizeOrder.indexOf(b.querySelector('p#size').innerText.split(': ')[1]);
             console.log(aValue, bValue);  // debug line
@@ -820,6 +820,10 @@ function clearAllDataAndRefresh() {
     usersT[user]["cart"]={}
     localStorage.setItem("users", JSON.stringify(usersT));
     document.getElementById("cart-section").innerHTML = ""
+    budgetInput.addEventListener('change', function() {
+        userBudget = 0;
+        localStorage.setItem("userBudget", 0);
+    });
 }
 
 function loadpast(){
