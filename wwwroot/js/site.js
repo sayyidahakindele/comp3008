@@ -817,6 +817,7 @@ function clearAllDataAndRefresh() {
 
     const order = document.getElementById("cart-section").innerHTML
     usersT[user]["pastOrders"].push(order)
+    usersT[user]["cart"]={}
     console.log(usersT[user]["pastOrders"])
 
     localStorage.setItem("users", JSON.stringify(usersT));
