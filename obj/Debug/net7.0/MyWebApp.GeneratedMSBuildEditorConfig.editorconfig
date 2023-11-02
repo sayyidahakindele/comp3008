@@ -56,6 +56,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvbm9ydGhmYWNlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/workspaces/comp3008/Pages/pastorder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvcGFzdG9yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/workspaces/comp3008/Pages/prada.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvcHJhZGEuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

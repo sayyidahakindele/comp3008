@@ -13,9 +13,9 @@ let pastOrders = {
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
 let users = {
-    0:{user_name:"mike",email:"mike@you.com",password:"mike123",cart:{}},
-    1:{user_name:"ella",email:"ella@you.com",password:"ella123",cart:{0:[1,1,2,false],1:[2,0,4,true],2:[2,1,4,false]}},
-    2:{user_name:"jack",email:"jack@you.com",password:"jack123",cart:{}}}
+    0:{user_name:"mike",email:"mike@you.com",password:"mike123",cart:{},pastOrders:[]},
+    1:{user_name:"ella",email:"ella@you.com",password:"ella123",cart:{0:[1,1,2,false],1:[2,0,4,true],2:[2,1,4,false]},pastOrders:[]},
+    2:{user_name:"jack",email:"jack@you.com",password:"jack123",cart:{},pastOrders:[]}}
 
 //id:{store_name,address,catalog:{id,item_name,price,item_amount,in_store,store_id,rating (out of 5)}}
 shops = {0:{name:"zara",address:"123 zara ave",catalog:{
@@ -841,14 +841,37 @@ function clearAllDataAndRefresh() {
 
   function checkOut(){
     alert("Order Succesfull. Thank You!")
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+    
+
     const order = document.getElementById("cart-section").innerHTML
-    for (const key in pastOrders) {
-        if (key == user) {
-          console.log(`Found key: ${key}`);
-          pastOrders[key].push(order);
-          break; // Exit the loop once the target key is found
-        }
-    }
-    console.log(pastOrders)
+    usersT[user]["pastOrders"].push(order)
+    console.log(usersT[user]["pastOrders"])
+
+    localStorage.setItem("users", JSON.stringify(usersT));
+    // for (const key in pastOrders) {
+    //     if (key == user) {
+    //       console.log(`Found key: ${key}`);
+    //       pastOrders[key].push(order);
+    //       break; // Exit the loop once the target key is found
+    //     }
+    // }
+    
     document.getElementById("cart-section").innerHTML = ""
+}
+
+function loadpast(){
+    let t = localStorage.getItem("users");
+    let usersT = JSON.parse(t);
+    
+    let list = usersT[user]["pastOrders"]
+    let pp = 1
+    for(const item in list){
+        let gg = "Order "+pp
+        const newDiv = document.createElement("div");
+        newDiv.innerHTML = gg + list[item]
+        document.getElementById("p-orders").appendChild(newDiv)
+        pp++
+    }
 }
