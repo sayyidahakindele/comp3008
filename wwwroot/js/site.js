@@ -817,7 +817,7 @@ function clearAllDataAndRefresh() {
 
     const order = document.getElementById("cart-section").innerHTML
     usersT[user]["pastOrders"].push(order)
-    usersT[user]["cart"]={}
+    // usersT[user]["cart"]={}
     localStorage.setItem("users", JSON.stringify(usersT));
     document.getElementById("cart-section").innerHTML = ""
     budgetInput.addEventListener('change', function() {
