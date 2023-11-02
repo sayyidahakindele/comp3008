@@ -278,7 +278,53 @@ document.addEventListener('DOMContentLoaded', (event) => {
     }
 });
 
+const budgetInput = document.getElementById("budget");
+const progressBar = document.querySelector(".progress");
+let userBudget = parseFloat(localStorage.getItem("userBudget"));
 
+// Function to update the progress bar
+function updateProgressBar() {
+    const elem = document.getElementById('totall');
+    const innerText = elem.querySelector('p').innerText; 
+    const spentValue = parseFloat(innerText.split(': ')[1]);
+
+    // Calculate the progress percentage
+    const progressPercentage = (spentValue / userBudget) * 100;
+
+    // Update the progress bar
+    if (progressPercentage > 100) {
+        alert("You've exceeded your budget!");
+        progressBar.style.width = "100%";
+        progressBar.style.backgroundColor = "red";
+    } else {
+        progressBar.style.width = progressPercentage + "%";
+
+        if (progressPercentage < 25) {
+            progressBar.style.backgroundColor = "green";
+        } else if (progressPercentage < 75) {
+            progressBar.style.backgroundColor = "yellow";
+        } else {
+            progressBar.style.backgroundColor = "orange";
+        }
+    }
+}
+
+// Observe changes to the total amount
+const totallElem = document.getElementById('totall');
+const observer = new MutationObserver(updateProgressBar);
+
+observer.observe(totallElem, {
+    childList: true,
+    subtree: true,
+    characterData: true
+});
+
+// Listen to changes in the budget input
+budgetInput.addEventListener('change', function() {
+    userBudget = parseFloat(budgetInput.value);
+    localStorage.setItem("userBudget", userBudget.toString());
+    updateProgressBar();
+});
 </script>
 
 </body>
