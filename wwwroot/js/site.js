@@ -13,7 +13,7 @@ let pastOrders = {
 //id:{user_name,email,password,cart{id,item_name,price,item_amount,in_store}}
 //for cart [store_id,item_id,amount in cart,in_store]
 let users = {
-    0:{user_name:"mike",email:"mike@you.com",password:"mike123",cart:{0:[0,1,2,false],1:[2,3,4,true]}},
+    0:{user_name:"mike",email:"mike@you.com",password:"mike123",cart:{}},
     1:{user_name:"ella",email:"ella@you.com",password:"ella123",cart:{0:[1,1,2,false],1:[2,0,4,true],2:[2,1,4,false]}},
     2:{user_name:"jack",email:"jack@you.com",password:"jack123",cart:{}}}
 
