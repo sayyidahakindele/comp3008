@@ -428,6 +428,8 @@ function spec_cart(s,cart_div){
     for (item in ttemp){
         // console.log(ttemp[item])
         if(ttemp[item][0] == s){
+            const st = usersT[user]["cart"][item][0];
+            const i = usersT[user]["cart"][item][1];
             let xx = shopsT[s]["catalog"][ttemp[item][1]]
             // console.log(item[1])
             // console.log(xx)
@@ -439,6 +441,8 @@ function spec_cart(s,cart_div){
                         <p id="PriceS">Price: $${xx.price}</p>
                         <p>Amount: ${xx["amount"]}</p> 
                         </div>
+                        <label for="${st},${i},amount":</label><input type="number" id="${st},${i},amount" name="${st},${i},amount" value=${usersT[user]["cart"][item][2]} min="0" max="100" onchange=updateamount_store([${st},${i},${usersT[user]["cart"][item][2]}],"${st},${i},amount","${shopsT[st]["name"]}_cart")
+                        
                         <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>
                     </div>`;
             // result += ` <button type="button" id="myBtn" onclick="removeFromcart(${s},${item[1]})">-</button>`
@@ -612,13 +616,49 @@ function updateamount(i,amount_id){
             else{
                 console.log("its "+document.getElementById(amount_id).value);
                 usersT[user]["cart"][item][2]=document.getElementById(amount_id).value;
+                localStorage.setItem("users",JSON.stringify(usersT));
                 break;
             }
         }
     }
 
+    function updateamount_store(i,amount_id,cart_div){
+        let t = localStorage.getItem("users");
+        let usersT = JSON.parse(t);
+    
+    
+        console.log("testers fa");
+        for (item in usersT[user]["cart"]){
+            if (usersT[user]["cart"][item][0]==i[0] && usersT[user]["cart"][item][1]==i[1]){
+                // console.log(document.getElementById(amount_id).value);
+                if (document.getElementById(amount_id).value==0){
+                    console.log("its zero");
+                    console.log(cart_div);
+                    delete_item_store(i[0],cart_div);
+                    spec_cart(st,cart_div);
+                    loadCartItems("cart-section");
+                    break;
+                }
+                else{
+                    console.log("its "+document.getElementById(amount_id).value);
+                    usersT[user]["cart"][item][2]=document.getElementById(amount_id).value;
+                    localStorage.setItem("users",JSON.stringify(usersT));
+                    break;
+                }
+            }
+        }
+    
+    
+        
+        console.log("amount updated");
+        // loadcartItems("cart-section");
+        loadCartItems("cart-section");
+        load_instore("inStoreContent");
+    
+    }
 
-    localStorage.setItem("users",JSON.stringify(usersT));
+
+    
     console.log("amount updated");
     // loadcartItems("cart-section");
     loadCartItems("cart-section");

@@ -72,6 +72,12 @@
 </div>
 
 <script>
+document.addEventListener("visibilitychange", function() {
+    if (document.visibilityState === 'visible') {
+        location.reload();
+    }
+});
+
 document.addEventListener("DOMContentLoaded", function() {
     spec_cart(0,"zara_cart");
 });
