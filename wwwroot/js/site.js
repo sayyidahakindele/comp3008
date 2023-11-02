@@ -818,17 +818,7 @@ function clearAllDataAndRefresh() {
     const order = document.getElementById("cart-section").innerHTML
     usersT[user]["pastOrders"].push(order)
     usersT[user]["cart"]={}
-    console.log(usersT[user]["pastOrders"])
-
     localStorage.setItem("users", JSON.stringify(usersT));
-    // for (const key in pastOrders) {
-    //     if (key == user) {
-    //       console.log(`Found key: ${key}`);
-    //       pastOrders[key].push(order);
-    //       break; // Exit the loop once the target key is found
-    //     }
-    // }
-    
     document.getElementById("cart-section").innerHTML = ""
 }
 
